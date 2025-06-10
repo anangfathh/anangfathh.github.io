@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyPortfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" /> -->
+    <!-- <script src="https://unpkg.com/@phosphor-icons/web"></script> -->
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo">AnangFath</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experiences">Experiences</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#resume">Resume</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">Anangfath</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toogleMenu()">About</a></li>
+          <li><a href="#experiences" onclick="toogleMenu()">Experiences</a></li>
+          <li><a href="#projects" onclick="toogleMenu()">Projects</a></li>
+          <li><a href="#resume" onclick="toogleMenu()">Resume</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="hero">
+      <div class="section__pic-container"><img src=".\assets\3df6614b-03bb-4051-89b7-502eef8df841.png" alt="My Profile Picture" style="border-radius: 100%" /></div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Muhammad Anang Fathur Rohman</h1>
+        <p class="section__text__p2">Web Developer</p>
+        <div class="btn-container">
+          <button class="btn btn-color-1" onclick="window.open('./assets/MyCV.pdf')"><i class="bi bi-file-arrow-down-fill"></i>Download CV</button>
+        </div>
+        <div class="social-container">
+          <a href="https://www.linkedin.com/in/muhammad-anang-fathur-rohman-7671ba1b0/" target="_blank" class="icon"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/muhammad-anang-fathur-rohman-7671ba1b0/" target="_blank" class="icon"><i class="bi bi-github"></i></a>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img src=".\assets\20231210_113931.jpg" alt="Profile Picture" />
+        </div>
+        <div class="about-details-container">
+          <div class="about-container">
+            <div class="details-container">
+              <i class="bi bi-person-badge-fill icon"></i>
+              <h3>Biodata</h3>
+              <p>
+                <li><i class="bi bi-chevron-right"></i> <strong>Birthday :</strong> <span>January, 15th 2003</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Address :</strong> <span>Gondangrejo, Karanganyar</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Gender :</strong> <span>Male</span></li>
+              </p>
+            </div>
+            <div class="details-container">
+              <i class="bi bi-mortarboard icon"></i>
+              <h3>Educations</h3>
+              <p>
+                MAN 1 Surakarta <em><strong>(2018-2021)</strong></em> <br />
+                Bachelor Degree of Informatics, UNS <strong><em>(2021-Now)</em></strong>
+              </p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et molestiae voluptates vel ipsum, ipsa accusamus, fugiat perferendis blanditiis dolore adipisci exercitationem doloribus commodi soluta eos pariatur beatae laborum
+              explicabo distinctio a. Tenetur molestiae eos iste, excepturi exercitationem sequi vero sapiente voluptas, obcaecati et ullam similique expedita esse fuga fugit dolorem.
+            </p>
+          </div>
+        </div>
+      </div>
+      <i class="bi bi-caret-down-fill icon-arrow" onclick="location.href='./index.html#experiences'"></i>
+    </section>
+    <section id="experiences">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experiences</h1>
+      <div class="experience-details-container" style="margin-top: 1rem">
+        <div class="about-containers">
+          <div class="details-containers">
+            <h2 class="experiences-sub-title" style="text-align: center">Experiences</h2>
+            <div class="article-container" style="margin-top: 1rem">
+              <article>
+                <div>
+                  <h3><i class="bi bi-patch-check-fill"></i> Machine Learning Cohort, Bangkit Academy</h3>
+                  <p><em>Study Independent, Aug 2023 - Jan 2024.</em></p>
+                </div>
+              </article>
+              <article>
+                <div>
+                  <h3><i class="bi bi-patch-check-fill"></i> Peers Tutor, Bangkit Academy</h3>
+                  <p><em>Aug 2023 - Jan 2024.</em></p>
+                </div>
+              </article>
+              <article>
+                <div>
+                  <h3><i class="bi bi-patch-check-fill"></i> Lecturer’s Assistant of Database System</h3>
+                  <p><em>Sept - Des 2023</em></p>
+                </div>
+              </article>
+              <article>
+                <!-- <i class="bi bi-patch-check-fill"></i> -->
+                <div>
+                  <h3><i class="bi bi-patch-check-fill"></i> Lecturer’s Assistant of Object Oriented Programming</h3>
+                  <p><em>Sept - Des 2023</em></p>
+                </div>
+              </article>
+              <article>
+                <!-- <i class="bi bi-patch-check-fill"></i> -->
+                <div>
+                  <h3><i class="bi bi-patch-check-fill"></i> Lecturer’s Assistant of Programming Concept</h3>
+                  <p><em>Feb - June 2022</em></p>
+                </div>
+              </article>
+              <article>
+                <div>
+                  <h3><i class="bi bi-patch-check-fill"></i> Computer Lab Asistant, Universitas Sebelas Maret</h3>
+                  <p><em>Sept 2021 - Des 2023</em></p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-containers" style="margin-left: 2rem">
+            <h2 class="experiences-sub-title" style="margin-bottom: 1rem; text-align: center">Skills</h2>
+            <div class="article-container">
+              <article>
+                <i class="bi bi-filetype-html"></i>
+                <div style="width: 100%">
+                  <h3>HTML</h3>
+                  <div class="skill-content">
+                    <div class="skill-bar">
+                      <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                    <span class="skill-percent">90%</span>
+                  </div>
+                </div>
+              </article>
+              <article>
+                <i class="bi bi-filetype-css"></i>
+                <div style="width: 100%">
+                  <h3>CSS</h3>
+                  <div class="skill-content">
+                    <div class="skill-bar">
+                      <div class="skill-level" style="width: 70%"></div>
+                    </div>
+                    <span class="skill-percent">70%</span>
+                  </div>
+                </div>
+              </article>
+              <article>
+                <i class="bi bi-filetype-html"></i>
+                <div style="width: 100%">
+                  <h3>HTML</h3>
+                  <div class="skill-content">
+                    <div class="skill-bar">
+                      <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                    <span class="skill-percent">90%</span>
+                  </div>
+                </div>
+              </article>
+              <article>
+                <i class="bi bi-filetype-html"></i>
+                <div style="width: 100%">
+                  <h3>HTML</h3>
+                  <div class="skill-content">
+                    <div class="skill-bar">
+                      <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                    <span class="skill-percent">90%</span>
+                  </div>
+                </div>
+              </article>
+              <article>
+                <i class="bi bi-filetype-html"></i>
+                <div style="width: 100%">
+                  <h3>HTML</h3>
+                  <div class="skill-content">
+                    <div class="skill-bar">
+                      <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                    <span class="skill-percent">90%</span>
+                  </div>
+                </div>
+              </article>
+              <article>
+                <i class="bi bi-filetype-html"></i>
+                <div style="width: 100%">
+                  <h3>HTML</h3>
+                  <div class="skill-content">
+                    <div class="skill-bar">
+                      <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                    <span class="skill-percent">90%</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <i class="bi bi-caret-down-fill icon-arrow" onclick="location.href='./index.html#projects'"></i>
+    </section>
+    <section id="projects">
+      <p class="section__text__p1">My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="experience-details-container">
+        <div class="details-container color-container">
+          <div class="article-project-container"></div>
+        </div>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
