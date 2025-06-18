@@ -75,7 +75,7 @@
       <div class="text-center">
         <p class="font-semibold text-gray-600 dark:text-gray-400">Hello, I'm</p>
         <h1 class="text-4xl md:text-5xl font-bold my-2">Muhammad Anang Fathur Rohman</h1>
-        <p class="text-2xl text-gray-700 dark:text-gray-300 mb-6">Web Developer</p>
+        <p class="text-2xl text-gray-700 dark:text-gray-300 mb-6"><span id="typing-effect"></span></p>
         <div class="flex justify-center gap-4">
           <button
             class="font-semibold py-3 px-6 rounded-full border-2 border-gray-800 dark:border-gray-200 hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 transition-all duration-300"
@@ -278,6 +278,8 @@
       </div>
     </footer>
 
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
     <script>
       // Hamburger Menu Toggle
       function toggleMenu() {
@@ -314,6 +316,21 @@
           localStorage.theme = isDarkMode ? "dark" : "light";
           updateIcons(isDarkMode);
         });
+      });
+
+      // NEW: Typing Effect with Typed.js
+      document.addEventListener("DOMContentLoaded", () => {
+        const options = {
+          strings: ["AI Engineer", "Web Developer", "Computer Scientist"], // The words to type
+          typeSpeed: 100, // Speed of typing in milliseconds
+          backSpeed: 50, // Speed of deleting in milliseconds
+          backDelay: 2000, // Pause after typing a word (2 seconds)
+          loop: true,
+          showCursor: true, // Show the blinking cursor
+          cursorChar: "|", // The character for the cursor
+        };
+
+        const typed = new Typed("#typing-effect", options);
       });
     </script>
   </body>
