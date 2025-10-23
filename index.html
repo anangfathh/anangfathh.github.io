@@ -18,6 +18,34 @@
       html {
         scroll-behavior: smooth;
       }
+      /* Animation styles */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .fade-in-left {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .fade-in-right {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
     </style>
     <script>
       // Tailwind dark mode configuration
@@ -34,6 +62,8 @@
           <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400">About</a></li>
           <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400">Experiences</a></li>
           <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400">Projects</a></li>
+          <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400">Skills</a></li>
+          <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400">Education</a></li>
           <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400">Resume</a></li>
         </ul>
       </div>
@@ -59,8 +89,10 @@
           <div class="menu-links absolute top-full right-0 bg-white dark:bg-gray-800 shadow-lg rounded-md w-40 max-h-0 overflow-hidden transition-all duration-300">
             <ul class="list-none">
               <li><a href="#about" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">About</a></li>
+              <li><a href="#education" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Education</a></li>
               <li><a href="#experiences" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Experiences</a></li>
               <li><a href="#projects" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Projects</a></li>
+              <li><a href="#skills" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Skills</a></li>
               <li><a href="#resume" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Resume</a></li>
             </ul>
           </div>
@@ -69,10 +101,10 @@
     </nav>
 
     <section id="hero" class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-20 px-8 min-h-[80vh]">
-      <div class="w-64 h-64 md:w-80 md:h-80">
+      <div class="w-64 h-64 md:w-80 md:h-80 fade-in-left">
         <img src=".\assets\3df6614b-03bb-4051-89b7-502eef8df841.png" alt="My Profile Picture" class="rounded-full w-full h-full object-cover shadow-lg" />
       </div>
-      <div class="text-center">
+      <div class="text-center fade-in-right">
         <p class="font-semibold text-gray-600 dark:text-gray-400">Hello, I'm</p>
         <h1 class="text-4xl md:text-5xl font-bold my-2">Muhammad Anang Fathur Rohman</h1>
         <p class="text-2xl text-gray-700 dark:text-gray-300 mb-6"><span id="typing-effect"></span></p>
@@ -92,13 +124,13 @@
     </section>
 
     <section id="about" class="py-16 px-8">
-      <p class="text-center text-gray-600 dark:text-gray-400">Get To Know More</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold">About Me</h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Get To Know More</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">About Me</h1>
       <div class="flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-16 mt-12">
-        <div class="w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
+        <div class="w-64 h-64 md:w-80 md:h-80 flex-shrink-0 fade-in-left">
           <img src=".\assets\20231210_113931.jpg" alt="Profile Picture" class="rounded-3xl w-full h-full object-cover shadow-lg" />
         </div>
-        <div class="max-w-2xl text-center lg:text-left">
+        <div class="max-w-2xl text-center lg:text-left fade-in-right">
           <div class="flex flex-col md:flex-row gap-8 mb-8">
             <div class="flex-1 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl text-center shadow-md">
               <i class="bi bi-person-badge-fill text-3xl mb-2"></i>
@@ -109,16 +141,6 @@
                 <li class="flex items-center"><i class="bi bi-chevron-right mr-2"></i> <strong>Gender:</strong> <span>Male</span></li>
               </ul>
             </div>
-            <div class="flex-1 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl text-center shadow-md">
-              <i class="bi bi-mortarboard text-3xl mb-2"></i>
-              <h3 class="text-xl font-semibold mb-2">Education</h3>
-              <div class="text-gray-700 dark:text-gray-300">
-                <p>MAN 1 Surakarta <em>(2018-2021)</em></p>
-                <p>
-                  Bachelor's, Informatics, UNS <strong><em>(2021-Now)</em></strong>
-                </p>
-              </div>
-            </div>
           </div>
           <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
             I am a passionate and dedicated web developer and machine learning enthusiast currently pursuing my Bachelor's degree at Universitas Sebelas Maret. I thrive on solving complex problems and building efficient, user-friendly
@@ -128,11 +150,27 @@
       </div>
     </section>
 
+    <section id="education" class="py-16 px-8">
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">My Background</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Education</h1>
+      <div class="flex justify-center mt-12">
+        <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
+          <h2 class="text-2xl font-semibold text-center mb-6">Education</h2>
+          <div class="text-center text-gray-700 dark:text-gray-300 space-y-3">
+            <p>MAN 1 Surakarta <em>(2018-2021)</em></p>
+            <p>
+              Bachelor's, Informatics, UNS <strong><em>(2021-Now)</em></strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="experiences" class="py-16 px-8">
-      <p class="text-center text-gray-600 dark:text-gray-400">Explore My</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold">Experiences & Skills</h1>
-      <div class="flex flex-col lg:flex-row justify-center gap-8 mt-12">
-        <div class="flex-1 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md">
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Explore My</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Experiences</h1>
+      <div class="flex justify-center mt-12">
+        <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
           <h2 class="text-2xl font-semibold text-center mb-6">Experiences</h2>
           <div class="space-y-4">
             <article class="flex items-start gap-4">
@@ -165,67 +203,268 @@
             </article>
           </div>
         </div>
-        <div class="flex-1 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md">
+      </div>
+    </section>
+
+    <section id="skills" class="py-16 px-8">
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Browse My Recent</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Skills</h1>
+      <div class="flex justify-center mt-12">
+        <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
           <h2 class="text-2xl font-semibold text-center mb-6">Skills</h2>
-          <div class="space-y-4">
-            <article class="flex items-center gap-4">
-              <i class="bi bi-filetype-html text-2xl"></i>
-              <div class="w-full">
-                <h3 class="font-semibold">HTML</h3>
-                <div class="flex items-center gap-2">
-                  <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                    <div class="bg-gray-800 dark:bg-gray-200 h-2.5 rounded-full" style="width: 90%"></div>
-                  </div>
-                  <span class="text-sm font-medium">90%</span>
-                </div>
+          <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 items-center">
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=python" alt="Python" title="Python" class="w-full h-full object-contain" />
               </div>
-            </article>
-            <article class="flex items-center gap-4">
-              <i class="bi bi-filetype-css text-2xl"></i>
-              <div class="w-full">
-                <h3 class="font-semibold">CSS</h3>
-                <div class="flex items-center gap-2">
-                  <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                    <div class="bg-gray-800 dark:bg-gray-200 h-2.5 rounded-full" style="width: 75%"></div>
-                  </div>
-                  <span class="text-sm font-medium">75%</span>
-                </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Python</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=javascript" alt="JavaScript" title="JavaScript" class="w-full h-full object-contain" />
               </div>
-            </article>
-            <article class="flex items-center gap-4">
-              <i class="bi bi-filetype-js text-2xl"></i>
-              <div class="w-full">
-                <h3 class="font-semibold">JavaScript</h3>
-                <div class="flex items-center gap-2">
-                  <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                    <div class="bg-gray-800 dark:bg-gray-200 h-2.5 rounded-full" style="width: 80%"></div>
-                  </div>
-                  <span class="text-sm font-medium">80%</span>
-                </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">JavaScript</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=mysql" alt="MySQL" title="MySQL" class="w-full h-full object-contain" />
               </div>
-            </article>
-            <article class="flex items-center gap-4">
-              <i class="bi bi-wind text-2xl"></i>
-              <div class="w-full">
-                <h3 class="font-semibold">Tailwind CSS</h3>
-                <div class="flex items-center gap-2">
-                  <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                    <div class="bg-gray-800 dark:bg-gray-200 h-2.5 rounded-full" style="width: 85%"></div>
-                  </div>
-                  <span class="text-sm font-medium">85%</span>
-                </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">MySQL</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=tensorflow" alt="TensorFlow" title="TensorFlow" class="w-full h-full object-contain" />
               </div>
-            </article>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">TensorFlow</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skills.syvixor.com/api/icons?i=keras" alt="Keras" title="Keras" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Keras</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skills.syvixor.com/api/icons?i=jupyter" alt="Jupyter" title="Jupyter" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Jupyter</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skills.syvixor.com/api/icons?i=googlecolaboratory" alt="Google Colab" title="Google Colab" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Google Colab</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skills.syvixor.com/api/icons?i=kaggle" alt="Kaggle" title="Kaggle" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Kaggle</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=pytorch" alt="PyTorch" title="PyTorch" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">PyTorch</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skills.syvixor.com/api/icons?i=pandas" alt="Pandas" title="Pandas" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Pandas</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=scikitlearn" alt="Scikit-Learn" title="Scikit-Learn" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Scikit-Learn</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skills.syvixor.com/api/icons?i=numpy" alt="NumPy" title="NumPy" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">NumPy</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=opencv" alt="OpenCV" title="OpenCV" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">OpenCV</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=flask" alt="Flask" title="Flask" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Flask</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=fastapi" alt="FastAPI" title="FastAPI" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">FastAPI</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=git" alt="Git" title="Git" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Git</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=php" alt="PHP" title="PHP" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">PHP</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=docker" alt="Docker" title="Docker" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Docker</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=laravel" alt="Laravel" title="Laravel" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Laravel</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=vue" alt="Vue.js" title="Vue.js" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Vue.js</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=next" alt="Next.js" title="Next.js" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Next.js</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=go" alt="Go" title="Go" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Go</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skills.syvixor.com/api/icons?i=gin" alt="Gin" title="Gin" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Gin</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skills.syvixor.com/api/icons?i=langchain" alt="LangChain" title="LangChain" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">LangChain</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind CSS" title="Tailwind CSS" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Tailwind CSS</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=bootstrap" alt="Bootstrap" title="Bootstrap" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Bootstrap</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=figma" alt="Figma" title="Figma" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Figma</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <section id="projects" class="py-16 px-8">
-      <p class="text-center text-gray-600 dark:text-gray-400">Browse My Recent</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold">Projects</h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Browse My Recent</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Projects</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-        <div class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md text-center">
+        <div class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md text-center fade-in">
           <img src="https://via.placeholder.com/400x250" alt="Project 1" class="rounded-2xl mb-4 w-full object-cover" />
           <h2 class="text-2xl font-semibold mb-2">Project One</h2>
           <div class="flex justify-center gap-4 mt-4">
@@ -233,7 +472,7 @@
             <button class="font-semibold py-2 px-6 rounded-full bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-opacity duration-300">Live Demo</button>
           </div>
         </div>
-        <div class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md text-center">
+        <div class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md text-center fade-in">
           <img src="https://via.placeholder.com/400x250" alt="Project 2" class="rounded-2xl mb-4 w-full object-cover" />
           <h2 class="text-2xl font-semibold mb-2">Project Two</h2>
           <div class="flex justify-center gap-4 mt-4">
@@ -241,7 +480,7 @@
             <button class="font-semibold py-2 px-6 rounded-full bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-opacity duration-300">Live Demo</button>
           </div>
         </div>
-        <div class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md text-center">
+        <div class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md text-center fade-in">
           <img src="D:\codingan\anangfathh.github.io\assets\20231210_113931.jpg" alt="Project 3" class="rounded-2xl mb-4 w-full object-cover" />
           <h2 class="text-2xl font-semibold mb-2">Project Three</h2>
           <div class="flex justify-center gap-4 mt-4">
@@ -253,11 +492,11 @@
     </section>
 
     <section id="resume" class="py-16 px-8 text-center">
-      <p class="text-center text-gray-600 dark:text-gray-400">View My</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold mb-8">Resume</h1>
-      <p class="mb-6">Click the button below to view or download my resume.</p>
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">View My</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold mb-8 fade-in">Resume</h1>
+      <p class="mb-6 fade-in">Click the button below to view or download my resume.</p>
       <button
-        class="font-semibold py-3 px-6 rounded-full border-2 border-gray-800 dark:border-gray-200 hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 transition-all duration-300"
+        class="font-semibold py-3 px-6 rounded-full border-2 border-gray-800 dark:border-gray-200 hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 transition-all duration-300 fade-in"
         onclick="window.open('./assets/MyCV.pdf')"
       >
         <i class="bi bi-file-earmark-person-fill mr-2"></i>View Resume
@@ -271,6 +510,8 @@
             <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400">About</a></li>
             <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400">Experiences</a></li>
             <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400">Projects</a></li>
+            <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400">Skills</a></li>
+            <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400">Education</a></li>
             <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400">Resume</a></li>
           </ul>
         </nav>
@@ -331,6 +572,27 @@
         };
 
         const typed = new Typed("#typing-effect", options);
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            } else {
+              entry.target.classList.remove("visible");
+            }
+          });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll(".fade-in, .fade-in-left, .fade-in-right").forEach((el) => {
+          observer.observe(el);
+        });
       });
     </script>
   </body>
