@@ -133,13 +133,44 @@
         </div>
         <div class="max-w-2xl text-center lg:text-left fade-in-right">
           <div class="flex flex-col md:flex-row gap-8 mb-8">
-            <div class="flex-1 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl text-center shadow-md">
-              <i class="bi bi-person-badge-fill text-3xl mb-2"></i>
-              <h3 class="text-xl font-semibold mb-2">Biodata</h3>
-              <ul class="text-left space-y-2 text-gray-700 dark:text-gray-300">
-                <li class="flex items-center"><i class="bi bi-chevron-right mr-2"></i> <strong>Birthday:</strong> <span>Jan 15, 2003</span></li>
-                <li class="flex items-center"><i class="bi bi-chevron-right mr-2"></i> <strong>Address:</strong> <span>Gondangrejo, Karanganyar</span></li>
-                <li class="flex items-center"><i class="bi bi-chevron-right mr-2"></i> <strong>Gender:</strong> <span>Male</span></li>
+            <div class="flex-1 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="p-3 rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-indigo-900/40 dark:text-indigo-200">
+                  <i class="bi bi-person-badge-fill text-2xl"></i>
+                </div>
+                <div class="text-left">
+                  <h3 class="text-xl font-semibold">Biodata</h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400">Quick facts about me</p>
+                </div>
+              </div>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 dark:text-gray-300">
+                <li class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-700 rounded-2xl">
+                  <div class="p-2 rounded-xl bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-200 shadow-sm">
+                    <i class="bi bi-calendar-event-fill"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Birthday</p>
+                    <p class="text-base font-medium text-gray-900 dark:text-gray-100">Jan 15, 2003</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-700 rounded-2xl">
+                  <div class="p-2 rounded-xl bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-200 shadow-sm">
+                    <i class="bi bi-geo-alt-fill"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Address</p>
+                    <p class="text-base font-medium text-gray-900 dark:text-gray-100">Gondangrejo, Karanganyar</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-700 rounded-2xl">
+                  <div class="p-2 rounded-xl bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-200 shadow-sm">
+                    <i class="bi bi-gender-male"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Gender</p>
+                    <p class="text-base font-medium text-gray-900 dark:text-gray-100">Male</p>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -154,16 +185,45 @@
     <section id="education" class="py-16 px-8">
       <p class="text-center text-gray-600 dark:text-gray-400 fade-in">My Background</p>
       <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Education</h1>
-      <div class="flex justify-center mt-12">
-        <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
-          <h2 class="text-2xl font-semibold text-center mb-6">Education</h2>
-          <div class="text-center text-gray-700 dark:text-gray-300 space-y-3">
-            <p>MAN 1 Surakarta <em>(2018-2021)</em></p>
-            <p>
-              Bachelor's, Informatics, UNS <strong><em>(2021-Now)</em></strong>
-            </p>
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg fade-in">
+          <div class="flex items-start gap-4">
+            <div class="relative w-16 h-16">
+              <div class="absolute inset-0 flex items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 font-semibold uppercase tracking-wide dark:bg-indigo-900/40 dark:text-indigo-200">MAN</div>
+              <img
+                src="./assets/MAN.png"
+                alt="Logo MAN 1 Surakarta"
+                class="absolute inset-0 hidden h-full w-full rounded-2xl object-contain p-1"
+                loading="lazy"
+                onload="this.classList.remove('hidden'); this.previousElementSibling.classList.add('hidden');"
+                onerror="this.classList.add('hidden'); this.previousElementSibling.classList.remove('hidden');"
+              />
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">MAN 1 Surakarta</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">2018 - 2021</p>
+            </div>
           </div>
-        </div>
+        </article>
+        <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg fade-in">
+          <div class="flex items-start gap-4">
+            <div class="relative w-16 h-16">
+              <div class="absolute inset-0 flex items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 font-semibold uppercase tracking-wide dark:bg-indigo-900/40 dark:text-indigo-200">UNS</div>
+              <img
+                src="./assets/UNS.png"
+                alt="Logo Universitas Sebelas Maret"
+                class="absolute inset-0 hidden h-full w-full rounded-2xl object-contain p-1"
+                loading="lazy"
+                onload="this.classList.remove('hidden'); this.previousElementSibling.classList.add('hidden');"
+                onerror="this.classList.add('hidden'); this.previousElementSibling.classList.remove('hidden');"
+              />
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Universitas Sebelas Maret</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Bachelor's in Informatics (2021 - 2025)</p>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
