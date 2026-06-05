@@ -53,6 +53,140 @@
         opacity: 1;
         transform: translateX(0);
       }
+      .side-rail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .side-nav-link {
+        position: relative;
+        border-radius: 9999px;
+        padding: 0.25rem;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .side-nav-link .side-icon-wrap {
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        color: #4b5563;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        font-size: 1.25rem;
+      }
+      .dark .side-nav-link .side-icon-wrap {
+        color: #9ca3af;
+      }
+      /* Active state styles */
+      .side-nav-link.active .side-icon-wrap {
+        color: #4f46e5;
+      }
+      .dark .side-nav-link.active .side-icon-wrap {
+        color: #818cf8;
+      }
+      /* Active Left Bar/Indicator */
+      .side-nav-link::before {
+        content: "";
+        position: absolute;
+        left: -3px;
+        top: 50%;
+        transform: translateY(-50%) scaleY(0);
+        width: 3px;
+        height: 1rem;
+        background-color: #4f46e5;
+        border-radius: 9999px;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 0;
+      }
+      .dark .side-nav-link::before {
+        background-color: #818cf8;
+      }
+      .side-nav-link.active::before {
+        transform: translateY(-50%) scaleY(1);
+        opacity: 1;
+      }
+      /* Hover state styles */
+      .side-nav-link:hover .side-icon-wrap {
+        color: #4f46e5;
+        background: rgba(99, 102, 241, 0.05);
+        transform: scale(1.08);
+      }
+      .dark .side-nav-link:hover .side-icon-wrap {
+        color: #818cf8;
+        background: rgba(129, 140, 248, 0.08);
+      }
+      .side-nav-link.active:hover .side-icon-wrap {
+        transform: scale(1.08);
+        background: rgba(99, 102, 241, 0.15);
+      }
+      .dark .side-nav-link.active:hover .side-icon-wrap {
+        background: rgba(129, 140, 248, 0.2);
+      }
+      /* Premium Tooltip behavior for side-label */
+      .side-nav-link .side-label {
+        position: absolute;
+        left: 100%;
+        margin-left: 1rem;
+        padding: 0.4rem 0.8rem;
+        background: rgba(17, 24, 39, 0.85);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #f3f4f6;
+        font-size: 0.725rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border-radius: 0.75rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(-8px) scale(0.95);
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow:
+          0 10px 25px -5px rgba(0, 0, 0, 0.15),
+          0 8px 10px -6px rgba(0, 0, 0, 0.15);
+        z-index: 50;
+      }
+      .dark .side-nav-link .side-label {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        color: #111827;
+      }
+      .side-nav-link .side-label::before {
+        content: "";
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 4px;
+        border-style: solid;
+        border-color: transparent rgba(17, 24, 39, 0.85) transparent transparent;
+      }
+      .dark .side-nav-link .side-label::before {
+        border-color: transparent rgba(255, 255, 255, 0.95) transparent transparent;
+      }
+      .side-nav-link:hover .side-label {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+      /* View Transitions API Custom Theme Toggle */
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation: none;
+        mix-blend-mode: normal;
+      }
+      ::view-transition-old(root) {
+        z-index: 1;
+      }
+      ::view-transition-new(root) {
+        z-index: 9999;
+      }
     </style>
     <script>
       // Tailwind dark mode configuration
@@ -62,15 +196,16 @@
     </script>
   </head>
   <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
-    <nav class="hidden md:flex justify-around items-center h-[17vh] sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+    <nav class="hidden md:flex justify-around items-center h-20 min-h-[70px] bg-transparent z-50 relative">
       <div class="text-2xl font-bold cursor-default">AnangFath</div>
       <div>
         <ul class="flex gap-8 list-none text-lg">
           <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400">About</a></li>
-          <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400">Experiences</a></li>
-          <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400">Projects</a></li>
-          <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400">Skills</a></li>
           <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400">Education</a></li>
+          <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400">Experiences</a></li>
+          <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400">Competitions</a></li>
+          <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400">Skills</a></li>
+          <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400">Projects</a></li>
           <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400">Resume</a></li>
         </ul>
       </div>
@@ -80,26 +215,27 @@
       </button>
     </nav>
 
-    <nav class="md:hidden flex justify-between items-center p-6 sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+    <nav class="sticky top-0 z-50 md:hidden flex justify-between items-center px-6 h-16 min-h-[64px] bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm">
       <div class="text-2xl font-bold cursor-default">Anangfath</div>
       <div class="flex items-center gap-4">
-        <button id="theme-toggle-mobile" class="text-2xl">
+        <button id="theme-toggle-mobile" class="text-xl">
           <i class="bi bi-sun"></i>
           <i class="bi bi-moon hidden"></i>
         </button>
         <div class="relative">
           <div class="hamburger-icon space-y-1.5 cursor-pointer" onclick="toggleMenu()">
-            <span class="block w-8 h-0.5 bg-black dark:bg-white transition-transform duration-300"></span>
-            <span class="block w-8 h-0.5 bg-black dark:bg-white transition-opacity duration-300"></span>
-            <span class="block w-8 h-0.5 bg-black dark:bg-white transition-transform duration-300"></span>
+            <span class="block w-6 h-0.5 bg-black dark:bg-white transition-transform duration-300"></span>
+            <span class="block w-6 h-0.5 bg-black dark:bg-white transition-opacity duration-300"></span>
+            <span class="block w-6 h-0.5 bg-black dark:bg-white transition-transform duration-300"></span>
           </div>
-          <div class="menu-links absolute top-full right-0 bg-white dark:bg-gray-800 shadow-lg rounded-md w-40 max-h-0 overflow-hidden transition-all duration-300">
+          <div class="menu-links absolute top-full right-0 bg-white dark:bg-gray-800 shadow-lg rounded-md w-40 max-h-0 overflow-hidden transition-all duration-300 mt-4">
             <ul class="list-none">
               <li><a href="#about" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">About</a></li>
               <li><a href="#education" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Education</a></li>
               <li><a href="#experiences" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Experiences</a></li>
-              <li><a href="#projects" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Projects</a></li>
+              <li><a href="#competitions" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Competitions</a></li>
               <li><a href="#skills" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Skills</a></li>
+              <li><a href="#projects" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Projects</a></li>
               <li><a href="#resume" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Resume</a></li>
             </ul>
           </div>
@@ -107,7 +243,66 @@
       </div>
     </nav>
 
-    <section id="hero" class="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-20 px-8 min-h-[80vh]">
+    <aside id="desktop-sidebar" class="side-rail-container hidden lg:block fixed left-6 top-1/2 -translate-y-1/2 z-40 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 -translate-x-12 pointer-events-none">
+      <nav
+        aria-label="Section navigator"
+        class="side-rail relative bg-white/75 dark:bg-gray-900/75 backdrop-blur-xl border border-gray-200/50 dark:border-gray-800/50 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] px-2.5 py-4"
+      >
+        <div id="sidebar-indicator" class="absolute bg-indigo-600/10 dark:bg-indigo-400/15 rounded-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none opacity-0"></div>
+        <ul class="space-y-4 relative z-10">
+          <li>
+            <a href="#hero" data-section="hero" class="side-nav-link active" aria-label="Home">
+              <span class="side-icon-wrap"><i class="bi bi-house-door-fill"></i></span>
+              <span class="side-label">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about" data-section="about" class="side-nav-link" aria-label="About">
+              <span class="side-icon-wrap"><i class="bi bi-person-fill"></i></span>
+              <span class="side-label">About</span>
+            </a>
+          </li>
+          <li>
+            <a href="#education" data-section="education" class="side-nav-link" aria-label="Education">
+              <span class="side-icon-wrap"><i class="bi bi-mortarboard-fill"></i></span>
+              <span class="side-label">Education</span>
+            </a>
+          </li>
+          <li>
+            <a href="#experiences" data-section="experiences" class="side-nav-link" aria-label="Experiences">
+              <span class="side-icon-wrap"><i class="bi bi-briefcase-fill"></i></span>
+              <span class="side-label">Experiences</span>
+            </a>
+          </li>
+          <li>
+            <a href="#competitions" data-section="competitions" class="side-nav-link" aria-label="Competitions">
+              <span class="side-icon-wrap"><i class="bi bi-trophy-fill"></i></span>
+              <span class="side-label">Competitions</span>
+            </a>
+          </li>
+          <li>
+            <a href="#skills" data-section="skills" class="side-nav-link" aria-label="Skills">
+              <span class="side-icon-wrap"><i class="bi bi-stars"></i></span>
+              <span class="side-label">Skills</span>
+            </a>
+          </li>
+          <li>
+            <a href="#projects" data-section="projects" class="side-nav-link" aria-label="Projects">
+              <span class="side-icon-wrap"><i class="bi bi-kanban-fill"></i></span>
+              <span class="side-label">Projects</span>
+            </a>
+          </li>
+          <li>
+            <a href="#resume" data-section="resume" class="side-nav-link" aria-label="Resume">
+              <span class="side-icon-wrap"><i class="bi bi-file-earmark-person-fill"></i></span>
+              <span class="side-label">Resume</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <section id="hero" class="snap-section flex flex-col md:flex-row justify-center items-center gap-12 md:gap-20 px-8 min-h-[80vh]">
       <div class="w-64 h-64 md:w-80 md:h-80 fade-in-left">
         <img src=".\assets\3df6614b-03bb-4051-89b7-502eef8df841.png" alt="My Profile Picture" class="rounded-full w-full h-full object-cover shadow-lg" />
       </div>
@@ -130,7 +325,7 @@
       </div>
     </section>
 
-    <section id="about" class="py-16 px-8">
+    <section id="about" class="snap-section py-16 px-8">
       <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Get To Know More</p>
       <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">About Me</h1>
       <div class="flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-16 mt-12">
@@ -188,7 +383,7 @@
       </div>
     </section>
 
-    <section id="education" class="py-16 px-8">
+    <section id="education" class="snap-section py-16 px-8">
       <p class="text-center text-gray-600 dark:text-gray-400 fade-in">My Background</p>
       <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Education</h1>
       <div class="mt-12 max-w-3xl mx-auto grid grid-cols-1 gap-6">
@@ -213,21 +408,36 @@
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Universitas Sebelas Maret</h3>
               <p class="text-sm text-gray-500 dark:text-gray-400">Bachelor's in Informatics (2021 - 2025)</p>
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">GPA: 3.85/4.00</p>
-              <p class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-200">Relevant Coursework</p>
-              <ul class="mt-2 list-disc list-outside pl-5 space-y-1 text-sm text-gray-600 dark:text-gray-300">
-                <li>Data Structures and Algorithms</li>
-                <li>Database Systems</li>
-                <li>Machine Learning</li>
-                <li>Artificial Intelligence</li>
-                <li>Software Engineering</li>
-              </ul>
+              <p class="mt-4 text-sm font-medium text-gray-700 dark:text-gray-200">Relevant Coursework</p>
+              <div class="mt-2.5 flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1.5 text-xs font-semibold bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded-full border border-indigo-100/50 dark:border-indigo-900/30 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-default"
+                  >Data Structures and Algorithms</span
+                >
+                <span
+                  class="px-3 py-1.5 text-xs font-semibold bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded-full border border-indigo-100/50 dark:border-indigo-900/30 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-default"
+                  >Database Systems</span
+                >
+                <span
+                  class="px-3 py-1.5 text-xs font-semibold bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded-full border border-indigo-100/50 dark:border-indigo-900/30 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-default"
+                  >Machine Learning</span
+                >
+                <span
+                  class="px-3 py-1.5 text-xs font-semibold bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded-full border border-indigo-100/50 dark:border-indigo-900/30 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-default"
+                  >Artificial Intelligence</span
+                >
+                <span
+                  class="px-3 py-1.5 text-xs font-semibold bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded-full border border-indigo-100/50 dark:border-indigo-900/30 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-default"
+                  >Software Engineering</span
+                >
+              </div>
             </div>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="experiences" class="py-16 px-8">
+    <section id="experiences" class="snap-section py-16 px-8">
       <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Explore My</p>
       <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Experiences</h1>
       <div class="mt-12 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -240,11 +450,21 @@
               <p class="text-sm text-gray-600 dark:text-gray-300">Contract</p>
               <p class="text-sm text-gray-500 dark:text-gray-400"><em>Nov 2025 - Present</em></p>
               <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300 list-disc list-outside pl-5">
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">Designed and implemented LLM-based multi-agent architectures for task orchestration, knowledge retrieval, and decision routing.</li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">Integrated RAG pipelines with vector databases (embedding, indexing, reranking).</li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">Deployed and managed local LLM inference using Ollama with multiple open-source models for production workloads.</li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">Developed Speech-to-Text (STT) pipelines using Whisper for domain-specific transcription in on-prem environments.</li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">Built Text-to-Speech (TTS) services using Coqui TTS, Edge TTS, Piper, and Chatterbox.</li>
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                  Designed and implemented LLM-based multi-agent architectures for task orchestration, knowledge retrieval, and decision routing.
+                </li>
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                  Integrated RAG pipelines with vector databases (embedding, indexing, reranking).
+                </li>
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                  Deployed and managed local LLM inference using Ollama with multiple open-source models for production workloads.
+                </li>
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                  Developed Speech-to-Text (STT) pipelines using Whisper for domain-specific transcription in on-prem environments.
+                </li>
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                  Built Text-to-Speech (TTS) services using Coqui TTS, Edge TTS, Piper, and Chatterbox.
+                </li>
               </ul>
             </div>
           </div>
@@ -258,10 +478,18 @@
               <p class="text-sm text-gray-600 dark:text-gray-300">Freelance</p>
               <p class="text-sm text-gray-500 dark:text-gray-400"><em>Nov 2024 - Nov 2025</em></p>
               <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300 list-disc list-outside pl-5">
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">Processed raw data from CSV files into structured SQL syntax using Pandas, enabling seamless data integration into databases.</li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">Developed analytical formulas for KANO, SSI (Stakeholder Satisfaction Index), and IPA (Importance Performance Analysis) to evaluate stakeholder satisfaction levels.</li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">Built and maintained an interactive web application using Laravel and Vue.js to visualize data in an intuitive and user-friendly manner.</li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">Designed and implemented an AI model to predict Hajj Costs using Linear Regression and Genetic Algorithm techniques to enhance forecasting accuracy.</li>
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                  Processed raw data from CSV files into structured SQL syntax using Pandas, enabling seamless data integration into databases.
+                </li>
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                  Developed analytical formulas for KANO, SSI (Stakeholder Satisfaction Index), and IPA (Importance Performance Analysis) to evaluate stakeholder satisfaction levels.
+                </li>
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                  Built and maintained an interactive web application using Laravel and Vue.js to visualize data in an intuitive and user-friendly manner.
+                </li>
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                  Designed and implemented an AI model to predict Hajj Costs using Linear Regression and Genetic Algorithm techniques to enhance forecasting accuracy.
+                </li>
               </ul>
             </div>
           </div>
@@ -310,7 +538,212 @@
       </div>
     </section>
 
-    <section id="skills" class="py-16 px-8">
+    <section id="competitions" class="snap-section py-16 px-8">
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">My Achievements</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold mb-12 fade-in">Competitions</h1>
+      <div class="max-w-4xl mx-auto relative pl-4 sm:pl-8">
+        <!-- Vertical Timeline Axis -->
+        <div class="absolute left-4 sm:left-8 top-2 bottom-2 w-0.5 bg-gray-200 dark:bg-gray-700/60 -translate-x-1/2 z-0"></div>
+
+        <ul class="space-y-10 relative z-10 list-none pl-0">
+          <!-- Featured Hero Card: GEMASTIK XVI -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <!-- Timeline node icon -->
+            <div class="absolute left-0 top-1.5 w-8 h-8 rounded-full flex items-center justify-center bg-amber-500 text-white shadow-lg shadow-amber-500/30 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110">
+              <i class="bi bi-trophy-fill text-sm"></i>
+            </div>
+            <!-- Card content -->
+            <div
+              class="p-6 md:p-8 bg-gradient-to-br from-amber-50/50 to-orange-50/30 dark:from-amber-950/20 dark:to-orange-950/10 border-2 border-amber-500/30 dark:border-amber-500/20 rounded-3xl shadow-md transition-all duration-300 hover:shadow-lg hover:border-amber-500/50"
+            >
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200 border border-amber-200/50 dark:border-amber-800/40"
+                  >★ Juara 1 (Nasional)</span
+                >
+                <span class="px-3 py-1 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full">Tahun 2023</span>
+              </div>
+              <h3 class="text-2xl font-black text-gray-900 dark:text-gray-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors leading-tight">GEMASTIK XVI</h3>
+              <p class="text-sm font-semibold text-amber-700 dark:text-amber-400 mt-1">Bidang Karya Tulis Ilmiah</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">Pusat Prestasi Nasional (Puspresnas) - Kompetisi TIK Mahasiswa Tingkat Nasional paling bergengsi di Indonesia.</p>
+            </div>
+          </li>
+
+          <!-- Divider: Juara 1 -->
+          <li class="relative pl-8 sm:pl-12 pt-4 pb-2 z-10 fade-in">
+            <div class="absolute left-0 top-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white dark:border-gray-900 -translate-x-1/2 -translate-y-1/2 z-20"></div>
+            <h3 class="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 border-b border-gray-100 dark:border-gray-800/80 pb-2">🏆 Juara 1 / First Place Achievements</h3>
+          </li>
+
+          <!-- Juara 1: NextUP! 2025 -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <div
+              class="absolute left-0 top-3 w-6 h-6 rounded-full flex items-center justify-center bg-amber-500/10 text-amber-500 dark:bg-amber-500/20 dark:text-amber-300 shadow-sm border border-amber-500/20 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110"
+            >
+              <i class="bi bi-trophy-fill text-xs"></i>
+            </div>
+            <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-amber-500/20">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">NextUP! 2025</h4>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-300">Scientific Paper Category</p>
+            </div>
+          </li>
+
+          <!-- Juara 1: Codefest #1 2025 -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <div
+              class="absolute left-0 top-3 w-6 h-6 rounded-full flex items-center justify-center bg-amber-500/10 text-amber-500 dark:bg-amber-500/20 dark:text-amber-300 shadow-sm border border-amber-500/20 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110"
+            >
+              <i class="bi bi-trophy-fill text-xs"></i>
+            </div>
+            <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-amber-500/20">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Codefest #1 2025</h4>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-300">Universitas Sumatera Utara - Scientific Paper Category</p>
+            </div>
+          </li>
+
+          <!-- Juara 1: ACTION 2024 -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <div
+              class="absolute left-0 top-3 w-6 h-6 rounded-full flex items-center justify-center bg-amber-500/10 text-amber-500 dark:bg-amber-500/20 dark:text-amber-300 shadow-sm border border-amber-500/20 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110"
+            >
+              <i class="bi bi-trophy-fill text-xs"></i>
+            </div>
+            <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-amber-500/20">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">National Academic Competition of Data Science (ACTION 2024)</h4>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-300">Scientific Paper Category</p>
+            </div>
+          </li>
+
+          <!-- Juara 1: UNS Paper 2024 -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <div
+              class="absolute left-0 top-3 w-6 h-6 rounded-full flex items-center justify-center bg-amber-500/10 text-amber-500 dark:bg-amber-500/20 dark:text-amber-300 shadow-sm border border-amber-500/20 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110"
+            >
+              <i class="bi bi-trophy-fill text-xs"></i>
+            </div>
+            <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-amber-500/20">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">National Scientific Paper Competition UNS</h4>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-300">Faculty of Information Technology and Data Science - Universitas Sebelas Maret</p>
+            </div>
+          </li>
+
+          <!-- Juara 1: Airlangga Ideas 2023 -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <div
+              class="absolute left-0 top-3 w-6 h-6 rounded-full flex items-center justify-center bg-amber-500/10 text-amber-500 dark:bg-amber-500/20 dark:text-amber-300 shadow-sm border border-amber-500/20 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110"
+            >
+              <i class="bi bi-trophy-fill text-xs"></i>
+            </div>
+            <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-amber-500/20">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">11th Airlangga Ideas Competition</h4>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2023</span>
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-300">Universitas Airlangga - Ideas Competition Category</p>
+            </div>
+          </li>
+
+          <!-- Divider: Juara 2 -->
+          <li class="relative pl-8 sm:pl-12 pt-8 pb-2 z-10 fade-in">
+            <div class="absolute left-0 top-1/2 w-4 h-4 rounded-full bg-slate-500 border-4 border-white dark:border-gray-900 -translate-x-1/2 -translate-y-1/2 z-20"></div>
+            <h3 class="text-sm font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400 border-b border-gray-100 dark:border-gray-800/80 pb-2">🥈 Juara 2 / Second Place Achievements</h3>
+          </li>
+
+          <!-- Juara 2: UNYSEF #14 2025 -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <div
+              class="absolute left-0 top-3 w-6 h-6 rounded-full flex items-center justify-center bg-slate-400/10 text-slate-500 dark:bg-slate-400/20 dark:text-slate-300 shadow-sm border border-slate-400/20 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110"
+            >
+              <i class="bi bi-award-fill text-xs"></i>
+            </div>
+            <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-slate-500/20">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Lomba Karya Tulis Ilmiah Nasional UNYSEF #14</h4>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-300">Universitas Negeri Yogyakarta - National Level Scientific Paper</p>
+            </div>
+          </li>
+
+          <!-- Juara 2: UNITY #13 2025 -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <div
+              class="absolute left-0 top-3 w-6 h-6 rounded-full flex items-center justify-center bg-slate-400/10 text-slate-500 dark:bg-slate-400/20 dark:text-slate-300 shadow-sm border border-slate-400/20 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110"
+            >
+              <i class="bi bi-award-fill text-xs"></i>
+            </div>
+            <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-slate-500/20">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">National Competition & Innovation of IT (UNITY #13)</h4>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-300">Scientific Paper Category</p>
+            </div>
+          </li>
+
+          <!-- Juara 2: Medical Science Festival 2024 -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <div
+              class="absolute left-0 top-3 w-6 h-6 rounded-full flex items-center justify-center bg-slate-400/10 text-slate-500 dark:bg-slate-400/20 dark:text-slate-300 shadow-sm border border-slate-400/20 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110"
+            >
+              <i class="bi bi-award-fill text-xs"></i>
+            </div>
+            <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-slate-500/20">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Medical Science Festival Competition 2024</h4>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-300">Lomba Karya Tulis Ilmiah Nasional</p>
+            </div>
+          </li>
+
+          <!-- Juara 2: UPN Electrolympic 2024 -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <div
+              class="absolute left-0 top-3 w-6 h-6 rounded-full flex items-center justify-center bg-slate-400/10 text-slate-500 dark:bg-slate-400/20 dark:text-slate-300 shadow-sm border border-slate-400/20 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110"
+            >
+              <i class="bi bi-award-fill text-xs"></i>
+            </div>
+            <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-slate-500/20">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Lomba Karya Tulis Ilmiah Electrolympic UPN</h4>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-300">UPN Veteran Jakarta - National Scientific Paper</p>
+            </div>
+          </li>
+
+          <!-- Juara 2: UNYSEF #12 2023 -->
+          <li class="relative pl-8 sm:pl-12 group fade-in">
+            <div
+              class="absolute left-0 top-3 w-6 h-6 rounded-full flex items-center justify-center bg-slate-400/10 text-slate-500 dark:bg-slate-400/20 dark:text-slate-300 shadow-sm border border-slate-400/20 -translate-x-1/2 z-20 transition-transform duration-300 group-hover:scale-110"
+            >
+              <i class="bi bi-award-fill text-xs"></i>
+            </div>
+            <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-slate-500/20">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Lomba Karya Tulis Ilmiah Nasional UNYSEF #12</h4>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2023</span>
+              </div>
+              <p class="text-xs text-gray-600 dark:text-gray-300">Universitas Negeri Yogyakarta - National Level Scientific Paper</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="skills" class="snap-section py-16 px-8">
       <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Browse My Recent</p>
       <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Skills</h1>
 
@@ -457,24 +890,6 @@
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=git" alt="Git" title="Git" class="w-full h-full object-contain" />
-              </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Git</span>
-            </div>
-
-            <div class="flex flex-col items-center group">
-              <div
-                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
-              >
-                <img src="https://skillicons.dev/icons?i=docker" alt="Docker" title="Docker" class="w-full h-full object-contain" />
-              </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Docker</span>
-            </div>
-
-            <div class="flex flex-col items-center group">
-              <div
-                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
-              >
                 <img src="https://skillicons.dev/icons?i=laravel" alt="Laravel" title="Laravel" class="w-full h-full object-contain" />
               </div>
               <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Laravel</span>
@@ -536,58 +951,173 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="projects" class="py-16 px-8">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Browse My Recent</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Projects</h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-        <div class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md text-center fade-in">
-          <div class="w-full h-48 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 rounded-2xl mb-4 flex items-center justify-center">
-            <i class="bi bi-code-slash text-6xl text-indigo-600 dark:text-indigo-400"></i>
-          </div>
-          <h2 class="text-2xl font-semibold mb-2">Project One</h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Description of your amazing project goes here</p>
-          <div class="flex justify-center gap-4 mt-4">
-            <button class="font-semibold py-2 px-6 rounded-full border-2 border-gray-800 dark:border-gray-200 hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 transition-all duration-300">GitHub</button>
-            <button class="font-semibold py-2 px-6 rounded-full bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-opacity duration-300">Live Demo</button>
-          </div>
-        </div>
-        <div class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md text-center fade-in">
-          <div class="w-full h-48 bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/40 dark:to-cyan-900/40 rounded-2xl mb-4 flex items-center justify-center">
-            <i class="bi bi-laptop text-6xl text-blue-600 dark:text-blue-400"></i>
-          </div>
-          <h2 class="text-2xl font-semibold mb-2">Project Two</h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Description of your amazing project goes here</p>
-          <div class="flex justify-center gap-4 mt-4">
-            <button class="font-semibold py-2 px-6 rounded-full border-2 border-gray-800 dark:border-gray-200 hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 transition-all duration-300">GitHub</button>
-            <button class="font-semibold py-2 px-6 rounded-full bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-opacity duration-300">Live Demo</button>
-          </div>
-        </div>
-        <div class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md text-center fade-in">
-          <div class="w-full h-48 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-2xl mb-4 flex items-center justify-center">
-            <i class="bi bi-cpu text-6xl text-green-600 dark:text-green-400"></i>
-          </div>
-          <h2 class="text-2xl font-semibold mb-2">Project Three</h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Description of your amazing project goes here</p>
-          <div class="flex justify-center gap-4 mt-4">
-            <button class="font-semibold py-2 px-6 rounded-full border-2 border-gray-800 dark:border-gray-200 hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 transition-all duration-300">GitHub</button>
-            <button class="font-semibold py-2 px-6 rounded-full bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-opacity duration-300">Live Demo</button>
+      <!-- DevOps Skills -->
+      <div class="flex justify-center mt-8">
+        <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
+          <h2 class="text-2xl font-semibold text-center mb-6">DevOps</h2>
+          <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 items-center">
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=docker" alt="Docker" title="Docker" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Docker</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=kubernetes" alt="Kubernetes" title="Kubernetes" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Kubernetes</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=git" alt="Git" title="Git" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Git</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="resume" class="py-16 px-8 text-center">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">View My</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold mb-8 fade-in">Resume</h1>
-      <p class="mb-6 fade-in">Click the button below to view or download my resume.</p>
-      <button
-        class="font-semibold py-3 px-6 rounded-full border-2 border-gray-800 dark:border-gray-200 hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 transition-all duration-300 fade-in"
-        onclick="window.open('./assets/CV_Muhammad Anang Fathur Rohman.pdf')"
+    <section id="projects" class="snap-section py-16 px-8">
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Browse My Recent</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Projects</h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <!-- Project 1 -->
+        <div
+          class="p-6 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-3xl shadow-md flex flex-col h-full hover:shadow-xl hover:border-indigo-500/20 dark:hover:border-indigo-400/20 hover:-translate-y-1.5 transition-all duration-300 group fade-in"
+        >
+          <div
+            class="relative w-full h-48 rounded-2xl overflow-hidden mb-4 flex items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 dark:from-indigo-900/30 dark:to-purple-900/30 border border-gray-100 dark:border-gray-700/50"
+          >
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <i class="bi bi-robot text-5xl text-indigo-600 dark:text-indigo-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"></i>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">LLM Agents</span>
+            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">RAG</span>
+            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">Whisper</span>
+          </div>
+          <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">QudoAgent Orchestrator</h2>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed">
+            Multi-agent architecture using LLMs for task scheduling, vector RAG integration, Whisper speech transcription, and local inference management via Ollama.
+          </p>
+          <div class="flex gap-3 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
+            <button
+              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5"
+              onclick="window.open('https://github.com/anangfathh')"
+            >
+              <i class="bi bi-github"></i>GitHub
+            </button>
+            <button
+              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-1.5"
+              onclick="window.open('#')"
+            >
+              <i class="bi bi-box-arrow-up-right"></i>Live Demo
+            </button>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div
+          class="p-6 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-3xl shadow-md flex flex-col h-full hover:shadow-xl hover:border-indigo-500/20 dark:hover:border-indigo-400/20 hover:-translate-y-1.5 transition-all duration-300 group fade-in"
+        >
+          <div
+            class="relative w-full h-48 rounded-2xl overflow-hidden mb-4 flex items-center justify-center bg-gradient-to-br from-blue-500/10 to-cyan-500/10 dark:from-blue-900/30 dark:to-cyan-900/30 border border-gray-100 dark:border-gray-700/50"
+          >
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#0284c7_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <i class="bi bi-pie-chart-fill text-5xl text-blue-600 dark:text-blue-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"></i>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Laravel</span>
+            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Vue.js</span>
+            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Pandas</span>
+          </div>
+          <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Fintech Stakeholder Analytics</h2>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed">Analytical dashboard built for UNS Fintech Center to process stakeholder survey data using KANO, SSI, and IPA satisfaction formulas.</p>
+          <div class="flex gap-3 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
+            <button
+              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5"
+              onclick="window.open('https://github.com/anangfathh')"
+            >
+              <i class="bi bi-github"></i>GitHub
+            </button>
+            <button
+              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-1.5"
+              onclick="window.open('#')"
+            >
+              <i class="bi bi-box-arrow-up-right"></i>Live Demo
+            </button>
+          </div>
+        </div>
+        <!-- Project 3 -->
+        <div
+          class="p-6 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-3xl shadow-md flex flex-col h-full hover:shadow-xl hover:border-indigo-500/20 dark:hover:border-indigo-400/20 hover:-translate-y-1.5 transition-all duration-300 group fade-in"
+        >
+          <div
+            class="relative w-full h-48 rounded-2xl overflow-hidden mb-4 flex items-center justify-center bg-gradient-to-br from-emerald-500/10 to-teal-500/10 dark:from-emerald-900/30 dark:to-teal-900/30 border border-gray-100 dark:border-gray-700/50"
+          >
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <i class="bi bi-cpu text-5xl text-emerald-600 dark:text-emerald-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"></i>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-emerald-50/80 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 rounded border border-emerald-100/30 dark:border-emerald-900/20"
+              >Scikit-Learn</span
+            >
+            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-emerald-50/80 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 rounded border border-emerald-100/30 dark:border-emerald-900/20"
+              >Genetic Alg</span
+            >
+            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-emerald-50/80 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 rounded border border-emerald-100/30 dark:border-emerald-900/20"
+              >Python</span
+            >
+          </div>
+          <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Hajj Cost Predictor Engine</h2>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed">
+            Machine learning regression models optimized with Genetic Algorithms to forecast Hajj expenditures based on inflation and administrative indices.
+          </p>
+          <div class="flex gap-3 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
+            <button
+              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5"
+              onclick="window.open('https://github.com/anangfathh')"
+            >
+              <i class="bi bi-github"></i>GitHub
+            </button>
+            <button
+              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-1.5"
+              onclick="window.open('#')"
+            >
+              <i class="bi bi-box-arrow-up-right"></i>Live Demo
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume" class="py-16 px-8 flex justify-center items-center">
+      <div
+        class="w-full max-w-4xl p-8 md:p-12 bg-gradient-to-br from-slate-900 to-indigo-950 dark:from-slate-950 dark:to-slate-900/90 rounded-[2.5rem] shadow-xl text-center relative overflow-hidden border border-indigo-500/10 dark:border-indigo-500/20 fade-in"
       >
-        <i class="bi bi-file-earmark-person-fill mr-2"></i>View Resume
-      </button>
+        <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.06] bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="relative z-10">
+          <p class="text-indigo-500 dark:text-indigo-400 font-bold uppercase tracking-widest text-xs mb-2">Curriculum Vitae</p>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Professional Resume</h2>
+          <p class="text-slate-300 dark:text-slate-400 mb-8 max-w-md mx-auto text-sm leading-relaxed">Interested in reviewing my detailed academic background, skillsets, and professional experiences? Access the full PDF below.</p>
+          <button
+            class="font-semibold py-3.5 px-8 rounded-full bg-white text-gray-900 hover:bg-slate-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-indigo-500/15"
+            onclick="window.open('./assets/CV_Muhammad Anang Fathur Rohman.pdf')"
+          >
+            <i class="bi bi-file-earmark-arrow-down-fill mr-2"></i>Download Resume PDF
+          </button>
+        </div>
+      </div>
     </section>
 
     <footer class="py-8 border-t border-gray-200 dark:border-gray-700">
@@ -595,10 +1125,11 @@
         <nav class="flex justify-center mb-4">
           <ul class="flex flex-wrap justify-center gap-8 list-none text-lg">
             <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400">About</a></li>
-            <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400">Experiences</a></li>
-            <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400">Projects</a></li>
-            <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400">Skills</a></li>
             <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400">Education</a></li>
+            <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400">Experiences</a></li>
+            <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400">Competitions</a></li>
+            <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400">Skills</a></li>
+            <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400">Projects</a></li>
             <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400">Resume</a></li>
           </ul>
         </nav>
@@ -640,9 +1171,41 @@
 
       themeToggleBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
-          const isDarkMode = document.documentElement.classList.toggle("dark");
-          localStorage.theme = isDarkMode ? "dark" : "light";
-          updateIcons(isDarkMode);
+          const isDarkModeToggle = !document.documentElement.classList.contains("dark");
+
+          // Fallback if browser doesn't support View Transitions API
+          if (!document.startViewTransition) {
+            document.documentElement.classList.toggle("dark", isDarkModeToggle);
+            localStorage.theme = isDarkModeToggle ? "dark" : "light";
+            updateIcons(isDarkModeToggle);
+            return;
+          }
+
+          // Calculate center and radius of transition circle
+          const rect = btn.getBoundingClientRect();
+          const x = rect.left + rect.width / 2;
+          const y = rect.top + rect.height / 2;
+
+          const endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+
+          const transition = document.startViewTransition(() => {
+            document.documentElement.classList.toggle("dark", isDarkModeToggle);
+            localStorage.theme = isDarkModeToggle ? "dark" : "light";
+            updateIcons(isDarkModeToggle);
+          });
+
+          transition.ready.then(() => {
+            document.documentElement.animate(
+              {
+                clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`],
+              },
+              {
+                duration: 1000,
+                easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+                pseudoElement: "::view-transition-new(root)",
+              },
+            );
+          });
         });
       });
 
@@ -680,6 +1243,81 @@
         document.querySelectorAll(".fade-in, .fade-in-left, .fade-in-right").forEach((el) => {
           observer.observe(el);
         });
+
+        let updateIndicator = () => {};
+
+        // Side navigator active section state
+        const sideNavLinks = Array.from(document.querySelectorAll(".side-nav-link"));
+        const sectionByLink = sideNavLinks.map((link) => ({ link, section: document.getElementById(link.dataset.section) })).filter((item) => item.section);
+
+        if (sectionByLink.length > 0) {
+          const indicator = document.getElementById("sidebar-indicator");
+          updateIndicator = () => {
+            const activeLink = document.querySelector(".side-nav-link.active");
+            if (activeLink && indicator) {
+              const activeIcon = activeLink.querySelector(".side-icon-wrap");
+              if (activeIcon) {
+                const rect = activeIcon.getBoundingClientRect();
+                const navRect = document.querySelector(".side-rail").getBoundingClientRect();
+                indicator.style.height = `${rect.height}px`;
+                indicator.style.width = `${rect.width}px`;
+                indicator.style.top = `${rect.top - navRect.top}px`;
+                indicator.style.left = `${rect.left - navRect.left}px`;
+                indicator.style.opacity = "1";
+              }
+            } else if (indicator) {
+              indicator.style.opacity = "0";
+            }
+          };
+
+          const setActiveLink = (sectionId) => {
+            sideNavLinks.forEach((link) => {
+              link.classList.toggle("active", link.dataset.section === sectionId);
+            });
+            updateIndicator();
+          };
+
+          const sectionObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  setActiveLink(entry.target.id);
+                }
+              });
+            },
+            {
+              threshold: 0,
+              rootMargin: "-30% 0px -40% 0px",
+            },
+          );
+
+          sectionByLink.forEach((item) => sectionObserver.observe(item.section));
+
+          sideNavLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              setActiveLink(link.dataset.section);
+            });
+          });
+
+          window.addEventListener("resize", updateIndicator);
+          setTimeout(updateIndicator, 200);
+        }
+
+        // Sidebar scroll effect
+        const sidebar = document.getElementById("desktop-sidebar");
+        if (sidebar) {
+          window.addEventListener("scroll", () => {
+            // Show sidebar if scrolled down more than 150px
+            if (window.scrollY > 150) {
+              sidebar.classList.remove("opacity-0", "-translate-x-12", "pointer-events-none");
+              sidebar.classList.add("opacity-100", "translate-x-0");
+              setTimeout(updateIndicator, 50);
+            } else {
+              sidebar.classList.add("opacity-0", "-translate-x-12", "pointer-events-none");
+              sidebar.classList.remove("opacity-100", "translate-x-0");
+            }
+          });
+        }
       });
     </script>
   </body>
