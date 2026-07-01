@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Muhammad Anang Fathur Rohman's professional portfolio. AI Engineer, Web Developer, and Computer Scientist." id="meta-desc" />
     <title>AnangFath | Portfolio</title>
     <link rel="icon" href="./assets/LogoAnangFath1.png" type="image/png" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -200,24 +201,36 @@
       <div class="text-2xl font-bold cursor-default">AnangFath</div>
       <div>
         <ul class="flex gap-8 list-none text-lg">
-          <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400">About</a></li>
-          <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400">Education</a></li>
-          <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400">Experiences</a></li>
-          <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400">Competitions</a></li>
-          <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400">Skills</a></li>
-          <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400">Projects</a></li>
-          <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400">Resume</a></li>
+          <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.about">About</a></li>
+          <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.education">Education</a></li>
+          <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.experiences">Experiences</a></li>
+          <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.competitions">Competitions</a></li>
+          <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.skills">Skills</a></li>
+          <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.projects">Projects</a></li>
+          <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.resume">Resume</a></li>
         </ul>
       </div>
-      <button id="theme-toggle-desktop" class="text-2xl">
-        <i class="bi bi-sun"></i>
-        <i class="bi bi-moon hidden"></i>
-      </button>
+      <div class="flex items-center gap-4">
+        <!-- Language Switcher Desktop -->
+        <div class="flex items-center gap-1 text-sm border border-gray-200 dark:border-gray-800 rounded-full p-1 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm mr-2">
+          <button id="lang-en-desktop" class="px-2.5 py-1 rounded-full text-xs font-semibold transition-all duration-200" onclick="setLanguage('en')">EN</button>
+          <button id="lang-id-desktop" class="px-2.5 py-1 rounded-full text-xs font-semibold transition-all duration-200" onclick="setLanguage('id')">ID</button>
+        </div>
+        <button id="theme-toggle-desktop" class="text-2xl">
+          <i class="bi bi-sun"></i>
+          <i class="bi bi-moon hidden"></i>
+        </button>
+      </div>
     </nav>
 
     <nav class="sticky top-0 z-50 md:hidden flex justify-between items-center px-6 h-16 min-h-[64px] bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm">
       <div class="text-2xl font-bold cursor-default">Anangfath</div>
       <div class="flex items-center gap-4">
+        <!-- Language Switcher Mobile -->
+        <div class="flex items-center gap-1 text-[10px] border border-gray-200 dark:border-gray-800 rounded-full p-0.5 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
+          <button id="lang-en-mobile" class="px-2 py-0.5 rounded-full text-[10px] font-semibold transition-all duration-200" onclick="setLanguage('en')">EN</button>
+          <button id="lang-id-mobile" class="px-2 py-0.5 rounded-full text-[10px] font-semibold transition-all duration-200" onclick="setLanguage('id')">ID</button>
+        </div>
         <button id="theme-toggle-mobile" class="text-xl">
           <i class="bi bi-sun"></i>
           <i class="bi bi-moon hidden"></i>
@@ -230,13 +243,13 @@
           </div>
           <div class="menu-links absolute top-full right-0 bg-white dark:bg-gray-800 shadow-lg rounded-md w-40 max-h-0 overflow-hidden transition-all duration-300 mt-4">
             <ul class="list-none">
-              <li><a href="#about" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">About</a></li>
-              <li><a href="#education" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Education</a></li>
-              <li><a href="#experiences" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Experiences</a></li>
-              <li><a href="#competitions" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Competitions</a></li>
-              <li><a href="#skills" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Skills</a></li>
-              <li><a href="#projects" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Projects</a></li>
-              <li><a href="#resume" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700">Resume</a></li>
+              <li><a href="#about" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700" data-translate="nav.about">About</a></li>
+              <li><a href="#education" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700" data-translate="nav.education">Education</a></li>
+              <li><a href="#experiences" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700" data-translate="nav.experiences">Experiences</a></li>
+              <li><a href="#competitions" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700" data-translate="nav.competitions">Competitions</a></li>
+              <li><a href="#skills" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700" data-translate="nav.skills">Skills</a></li>
+              <li><a href="#projects" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700" data-translate="nav.projects">Projects</a></li>
+              <li><a href="#resume" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700" data-translate="nav.resume">Resume</a></li>
             </ul>
           </div>
         </div>
@@ -253,49 +266,49 @@
           <li>
             <a href="#" data-section="hero" class="side-nav-link active" aria-label="Home">
               <span class="side-icon-wrap"><i class="bi bi-house-door-fill"></i></span>
-              <span class="side-label">Home</span>
+              <span class="side-label" data-translate="sidebar.home">Home</span>
             </a>
           </li>
           <li>
             <a href="#about" data-section="about" class="side-nav-link" aria-label="About">
               <span class="side-icon-wrap"><i class="bi bi-person-fill"></i></span>
-              <span class="side-label">About</span>
+              <span class="side-label" data-translate="sidebar.about">About</span>
             </a>
           </li>
           <li>
             <a href="#education" data-section="education" class="side-nav-link" aria-label="Education">
               <span class="side-icon-wrap"><i class="bi bi-mortarboard-fill"></i></span>
-              <span class="side-label">Education</span>
+              <span class="side-label" data-translate="sidebar.education">Education</span>
             </a>
           </li>
           <li>
             <a href="#experiences" data-section="experiences" class="side-nav-link" aria-label="Experiences">
               <span class="side-icon-wrap"><i class="bi bi-briefcase-fill"></i></span>
-              <span class="side-label">Experiences</span>
+              <span class="side-label" data-translate="sidebar.experiences">Experiences</span>
             </a>
           </li>
           <li>
             <a href="#competitions" data-section="competitions" class="side-nav-link" aria-label="Competitions">
               <span class="side-icon-wrap"><i class="bi bi-trophy-fill"></i></span>
-              <span class="side-label">Competitions</span>
+              <span class="side-label" data-translate="sidebar.competitions">Competitions</span>
             </a>
           </li>
           <li>
             <a href="#skills" data-section="skills" class="side-nav-link" aria-label="Skills">
               <span class="side-icon-wrap"><i class="bi bi-stars"></i></span>
-              <span class="side-label">Skills</span>
+              <span class="side-label" data-translate="sidebar.skills">Skills</span>
             </a>
           </li>
           <li>
             <a href="#projects" data-section="projects" class="side-nav-link" aria-label="Projects">
               <span class="side-icon-wrap"><i class="bi bi-kanban-fill"></i></span>
-              <span class="side-label">Projects</span>
+              <span class="side-label" data-translate="sidebar.projects">Projects</span>
             </a>
           </li>
           <li>
             <a href="#resume" data-section="resume" class="side-nav-link" aria-label="Resume">
               <span class="side-icon-wrap"><i class="bi bi-file-earmark-person-fill"></i></span>
-              <span class="side-label">Resume</span>
+              <span class="side-label" data-translate="sidebar.resume">Resume</span>
             </a>
           </li>
         </ul>
@@ -307,7 +320,7 @@
         <img src=".\assets\3df6614b-03bb-4051-89b7-502eef8df841.png" alt="My Profile Picture" class="rounded-full w-full h-full object-cover shadow-lg" />
       </div>
       <div class="text-center fade-in-right">
-        <p class="font-semibold text-gray-600 dark:text-gray-400">Hello, I'm</p>
+        <p class="font-semibold text-gray-600 dark:text-gray-400" data-translate="hero.hello">Hello, I'm</p>
         <h1 class="text-4xl md:text-5xl font-bold my-2">Muhammad Anang Fathur Rohman</h1>
         <p class="text-2xl text-gray-700 dark:text-gray-300 mb-6"><span id="typing-effect"></span></p>
         <div class="flex justify-center gap-4">
@@ -315,7 +328,7 @@
             class="font-semibold py-3 px-6 rounded-full border-2 border-gray-800 dark:border-gray-200 hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 transition-all duration-300"
             onclick="window.open('./assets/CV_Muhammad Anang Fathur Rohman.pdf')"
           >
-            <i class="bi bi-file-arrow-down-fill mr-2"></i>Download CV
+            <i class="bi bi-file-arrow-down-fill mr-2"></i><span data-translate="hero.downloadCv">Download CV</span>
           </button>
         </div>
         <div class="flex justify-center mt-6 gap-4">
@@ -326,8 +339,8 @@
     </section>
 
     <section id="about" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Get To Know More</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">About Me</h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="about.subtitle">Get To Know More</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in" data-translate="about.title">About Me</h1>
       <div class="flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-16 mt-12">
         <div class="w-64 h-64 md:w-80 md:h-80 flex-shrink-0 fade-in-left">
           <img src=".\assets\20231210_113931.jpg" alt="Profile Picture" class="rounded-3xl w-full h-full object-cover shadow-lg" />
@@ -340,8 +353,8 @@
                   <i class="bi bi-person-badge-fill text-2xl"></i>
                 </div>
                 <div class="text-left">
-                  <h3 class="text-xl font-semibold">Biodata</h3>
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Quick facts about me</p>
+                  <h3 class="text-xl font-semibold" data-translate="about.biodataTitle">Biodata</h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400" data-translate="about.biodataSubtitle">Quick facts about me</p>
                 </div>
               </div>
               <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 dark:text-gray-300">
@@ -350,8 +363,8 @@
                     <i class="bi bi-calendar-event-fill"></i>
                   </div>
                   <div>
-                    <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Birthday</p>
-                    <p class="text-base font-medium text-gray-900 dark:text-gray-100">Jan 15, 2003</p>
+                    <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400" data-translate="about.birthday">Birthday</p>
+                    <p class="text-base font-medium text-gray-900 dark:text-gray-100" data-translate="about.birthdayValue">Jan 15, 2003</p>
                   </div>
                 </li>
                 <li class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-700 rounded-2xl">
@@ -359,8 +372,8 @@
                     <i class="bi bi-geo-alt-fill"></i>
                   </div>
                   <div>
-                    <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Address</p>
-                    <p class="text-base font-medium text-gray-900 dark:text-gray-100">Gondangrejo, Karanganyar</p>
+                    <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400" data-translate="about.address">Address</p>
+                    <p class="text-base font-medium text-gray-900 dark:text-gray-100" data-translate="about.addressValue">Gondangrejo, Karanganyar</p>
                   </div>
                 </li>
                 <li class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-700 rounded-2xl">
@@ -368,14 +381,14 @@
                     <i class="bi bi-gender-male"></i>
                   </div>
                   <div>
-                    <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Gender</p>
-                    <p class="text-base font-medium text-gray-900 dark:text-gray-100">Male</p>
+                    <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400" data-translate="about.gender">Gender</p>
+                    <p class="text-base font-medium text-gray-900 dark:text-gray-100" data-translate="about.genderValue">Male</p>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
-          <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-translate="about.description">
             I am a passionate and dedicated web developer and machine learning enthusiast currently pursuing my Bachelor's degree at Universitas Sebelas Maret. I thrive on solving complex problems and building efficient, user-friendly
             applications. My goal is to leverage technology to create meaningful and impactful solutions.
           </p>
@@ -384,8 +397,8 @@
     </section>
 
     <section id="education" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">My Background</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Education</h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="education.subtitle">My Background</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in" data-translate="education.title">Education</h1>
       <div class="mt-12 max-w-3xl mx-auto grid grid-cols-1 gap-6">
         <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg fade-in">
           <div class="flex items-start gap-4">
@@ -395,7 +408,7 @@
             <div>
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">MAN 1 Surakarta</h3>
               <p class="text-sm text-gray-500 dark:text-gray-400">2018 - 2021</p>
-              <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Achieved 753,54 on UTBK Score.</p>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-300" data-translate="education.man1Value">Achieved 753,54 on UTBK Score.</p>
             </div>
           </div>
         </article>
@@ -406,28 +419,33 @@
             </div>
             <div>
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Universitas Sebelas Maret</h3>
-              <p class="text-sm text-gray-500 dark:text-gray-400">Bachelor's in Informatics (2021 - 2025)</p>
-              <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">GPA: 3.85/4.00</p>
-              <p class="mt-4 text-sm font-medium text-gray-700 dark:text-gray-200">Relevant Coursework</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400" data-translate="education.unsDegree">Bachelor's in Informatics (2021 - 2025)</p>
+              <p class="mt-2 text-sm text-gray-600 dark:text-gray-300" data-translate="education.unsGpa">GPA: 3.85/4.00</p>
+              <p class="mt-4 text-sm font-medium text-gray-700 dark:text-gray-200" data-translate="education.courseworkTitle">Relevant Coursework</p>
               <div class="mt-2.5 flex flex-wrap gap-2">
                 <span
                   class="px-3 py-1.5 text-xs font-semibold bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded-full border border-indigo-100/50 dark:border-indigo-900/30 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-default"
+                  data-translate="education.coursework.dsa"
                   >Data Structures and Algorithms</span
                 >
                 <span
                   class="px-3 py-1.5 text-xs font-semibold bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded-full border border-indigo-100/50 dark:border-indigo-900/30 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-default"
+                  data-translate="education.coursework.db"
                   >Database Systems</span
                 >
                 <span
                   class="px-3 py-1.5 text-xs font-semibold bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded-full border border-indigo-100/50 dark:border-indigo-900/30 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-default"
+                  data-translate="education.coursework.ml"
                   >Machine Learning</span
                 >
                 <span
                   class="px-3 py-1.5 text-xs font-semibold bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded-full border border-indigo-100/50 dark:border-indigo-900/30 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-default"
+                  data-translate="education.coursework.ai"
                   >Artificial Intelligence</span
                 >
                 <span
                   class="px-3 py-1.5 text-xs font-semibold bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded-full border border-indigo-100/50 dark:border-indigo-900/30 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-900/60 cursor-default"
+                  data-translate="education.coursework.se"
                   >Software Engineering</span
                 >
               </div>
@@ -438,31 +456,31 @@
     </section>
 
     <section id="experiences" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Explore My</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Experiences</h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="experiences.subtitle">Explore My</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in" data-translate="experiences.title">Experiences</h1>
       <div class="mt-12 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
         <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md lg:col-span-2 fade-in">
           <div class="flex items-start gap-4">
             <i class="bi bi-robot text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
             <div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">AI Engineer</h3>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.qudo.role">AI Engineer</h3>
               <p class="text-sm text-gray-600 dark:text-gray-300">PT Qudo Buana Nawakara</p>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Contract</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400"><em>Nov 2025 - Present</em></p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="experiences.qudo.type">Contract</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.qudo.duration">Nov 2025 - Present</em></p>
               <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300 list-disc list-outside pl-5">
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet1">
                   Designed and implemented LLM-based multi-agent architectures for task orchestration, knowledge retrieval, and decision routing.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet2">
                   Integrated RAG pipelines with vector databases (embedding, indexing, reranking).
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet3">
                   Deployed and managed local LLM inference using Ollama with multiple open-source models for production workloads.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet4">
                   Developed Speech-to-Text (STT) pipelines using Whisper for domain-specific transcription in on-prem environments.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet5">
                   Built Text-to-Speech (TTS) services using Coqui TTS, Edge TTS, Piper, and Chatterbox.
                 </li>
               </ul>
@@ -473,21 +491,21 @@
           <div class="flex items-start gap-4">
             <i class="bi bi-robot text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
             <div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">SoftWare Developer</h3>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.fintech.role">SoftWare Developer</h3>
               <p class="text-sm text-gray-600 dark:text-gray-300">Fintech Center UNS</p>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Freelance</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400"><em>Nov 2024 - Nov 2025</em></p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="experiences.fintech.type">Freelance</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.fintech.duration">Nov 2024 - Nov 2025</em></p>
               <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300 list-disc list-outside pl-5">
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet1">
                   Processed raw data from CSV files into structured SQL syntax using Pandas, enabling seamless data integration into databases.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet2">
                   Developed analytical formulas for KANO, SSI (Stakeholder Satisfaction Index), and IPA (Importance Performance Analysis) to evaluate stakeholder satisfaction levels.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet3">
                   Built and maintained an interactive web application using Laravel and Vue.js to visualize data in an intuitive and user-friendly manner.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet4">
                   Designed and implemented an AI model to predict Hajj Costs using Linear Regression and Genetic Algorithm techniques to enhance forecasting accuracy.
                 </li>
               </ul>
@@ -500,9 +518,9 @@
           <div class="flex items-start gap-4">
             <i class="bi bi-briefcase-fill text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
             <div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Machine Learning Cohort</h3>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.bangkit.role">Machine Learning Cohort</h3>
               <p class="text-sm text-gray-600 dark:text-gray-300">Bangkit Academy</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400"><em>Studi Independen, Aug 2023 - Jan 2024</em></p>
+              <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.bangkit.duration">Studi Independen, Aug 2023 - Jan 2024</em></p>
             </div>
           </div>
         </article>
@@ -510,9 +528,9 @@
           <div class="flex items-start gap-4">
             <i class="bi bi-briefcase-fill text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
             <div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Peers Tutor</h3>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.tutor.role">Peers Tutor</h3>
               <p class="text-sm text-gray-600 dark:text-gray-300">Bangkit Academy</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400"><em>Aug 2023 - Jan 2024</em></p>
+              <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.tutor.duration">Aug 2023 - Jan 2024</em></p>
             </div>
           </div>
         </article>
@@ -520,8 +538,8 @@
           <div class="flex items-start gap-4">
             <i class="bi bi-briefcase-fill text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
             <div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Lecturer&apos;s Assistant of Database System</h3>
-              <p class="text-sm text-gray-500 dark:text-gray-400"><em>Sept - Dec 2023</em></p>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.dosbing.role">Lecturer&apos;s Assistant of Database System</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.dosbing.duration">Sept - Dec 2023</em></p>
             </div>
           </div>
         </article>
@@ -529,9 +547,9 @@
           <div class="flex items-start gap-4">
             <i class="bi bi-briefcase-fill text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
             <div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Computer Lab Assistant</h3>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.lab.role">Computer Lab Assistant</h3>
               <p class="text-sm text-gray-600 dark:text-gray-300">UNS</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400"><em>Sept 2021 - Dec 2023</em></p>
+              <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.lab.duration">Sept 2021 - Dec 2023</em></p>
             </div>
           </div>
         </article>
@@ -539,8 +557,8 @@
     </section>
 
     <section id="competitions" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">My Achievements</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold mb-12 fade-in">Competitions</h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="competitions.subtitle">My Achievements</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold mb-12 fade-in" data-translate="competitions.title">Competitions</h1>
       <div class="max-w-4xl mx-auto relative pl-4 sm:pl-8">
         <!-- Vertical Timeline Axis -->
         <div class="absolute left-4 sm:left-8 top-2 bottom-2 w-0.5 bg-gray-200 dark:bg-gray-700/60 -translate-x-1/2 z-0"></div>
@@ -557,21 +575,21 @@
               class="p-6 md:p-8 bg-gradient-to-br from-amber-50/50 to-orange-50/30 dark:from-amber-950/20 dark:to-orange-950/10 border-2 border-amber-500/30 dark:border-amber-500/20 rounded-3xl shadow-md transition-all duration-300 hover:shadow-lg hover:border-amber-500/50"
             >
               <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-                <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200 border border-amber-200/50 dark:border-amber-800/40"
+                <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200 border border-amber-200/50 dark:border-amber-800/40" data-translate="competitions.gemastikAward"
                   >★ Juara 1 (Nasional)</span
                 >
-                <span class="px-3 py-1 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full">Tahun 2023</span>
+                <span class="px-3 py-1 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full" data-translate="competitions.gemastikYear">Tahun 2023</span>
               </div>
               <h3 class="text-2xl font-black text-gray-900 dark:text-gray-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors leading-tight">GEMASTIK XVI</h3>
-              <p class="text-sm font-semibold text-amber-700 dark:text-amber-400 mt-1">Bidang Karya Tulis Ilmiah</p>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">Pusat Prestasi Nasional (Puspresnas) - Kompetisi TIK Mahasiswa Tingkat Nasional paling bergengsi di Indonesia.</p>
+              <p class="text-sm font-semibold text-amber-700 dark:text-amber-400 mt-1" data-translate="competitions.gemastikCategory">Bidang Karya Tulis Ilmiah</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed" data-translate="competitions.gemastikDesc">Pusat Prestasi Nasional (Puspresnas) - Kompetisi TIK Mahasiswa Tingkat Nasional paling bergengsi di Indonesia.</p>
             </div>
           </li>
 
           <!-- Divider: Juara 1 -->
           <li class="relative pl-8 sm:pl-12 pt-4 pb-2 z-10 fade-in">
             <div class="absolute left-0 top-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white dark:border-gray-900 -translate-x-1/2 -translate-y-1/2 z-20"></div>
-            <h3 class="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 border-b border-gray-100 dark:border-gray-800/80 pb-2">🏆 Juara 1 / First Place Achievements</h3>
+            <h3 class="text-sm font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 border-b border-gray-100 dark:border-gray-800/80 pb-2" data-translate="competitions.headerJuara1">🏆 Juara 1 / First Place Achievements</h3>
           </li>
 
           <!-- Juara 1: NextUP! 2025 -->
@@ -586,7 +604,7 @@
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">NextUP! 2025</h4>
                 <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300">Scientific Paper Category</p>
+              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.nextupCategory">Scientific Paper Category</p>
             </div>
           </li>
 
@@ -602,7 +620,7 @@
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Codefest #1 2025</h4>
                 <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300">Universitas Sumatera Utara - Scientific Paper Category</p>
+              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.codefestCategory">Universitas Sumatera Utara - Scientific Paper Category</p>
             </div>
           </li>
 
@@ -618,7 +636,7 @@
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">National Academic Competition of Data Science (ACTION 2024)</h4>
                 <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300">Scientific Paper Category</p>
+              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.actionCategory">Scientific Paper Category</p>
             </div>
           </li>
 
@@ -634,7 +652,7 @@
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">National Scientific Paper Competition UNS</h4>
                 <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300">Faculty of Information Technology and Data Science - Universitas Sebelas Maret</p>
+              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.unsPaperCategory">Faculty of Information Technology and Data Science - Universitas Sebelas Maret</p>
             </div>
           </li>
 
@@ -650,14 +668,14 @@
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">11th Airlangga Ideas Competition</h4>
                 <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2023</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300">Universitas Airlangga - Ideas Competition Category</p>
+              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.airlanggaCategory">Universitas Airlangga - Ideas Competition Category</p>
             </div>
           </li>
 
           <!-- Divider: Juara 2 -->
           <li class="relative pl-8 sm:pl-12 pt-8 pb-2 z-10 fade-in">
             <div class="absolute left-0 top-1/2 w-4 h-4 rounded-full bg-slate-500 border-4 border-white dark:border-gray-900 -translate-x-1/2 -translate-y-1/2 z-20"></div>
-            <h3 class="text-sm font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400 border-b border-gray-100 dark:border-gray-800/80 pb-2">🥈 Juara 2 / Second Place Achievements</h3>
+            <h3 class="text-sm font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400 border-b border-gray-100 dark:border-gray-800/80 pb-2" data-translate="competitions.headerJuara2">🥈 Juara 2 / Second Place Achievements</h3>
           </li>
 
           <!-- Juara 2: UNYSEF #14 2025 -->
@@ -672,7 +690,7 @@
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Lomba Karya Tulis Ilmiah Nasional UNYSEF #14</h4>
                 <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300">Universitas Negeri Yogyakarta - National Level Scientific Paper</p>
+              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.unysef14Category">Universitas Negeri Yogyakarta - National Level Scientific Paper</p>
             </div>
           </li>
 
@@ -688,7 +706,7 @@
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">National Competition & Innovation of IT (UNITY #13)</h4>
                 <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300">Scientific Paper Category</p>
+              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.unityCategory">Scientific Paper Category</p>
             </div>
           </li>
 
@@ -704,7 +722,7 @@
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Medical Science Festival Competition 2024</h4>
                 <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300">Lomba Karya Tulis Ilmiah Nasional</p>
+              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.medsciCategory">Lomba Karya Tulis Ilmiah Nasional</p>
             </div>
           </li>
 
@@ -720,7 +738,7 @@
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Lomba Karya Tulis Ilmiah Electrolympic UPN</h4>
                 <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300">UPN Veteran Jakarta - National Scientific Paper</p>
+              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.upnCategory">UPN Veteran Jakarta - National Scientific Paper</p>
             </div>
           </li>
 
@@ -736,7 +754,7 @@
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Lomba Karya Tulis Ilmiah Nasional UNYSEF #12</h4>
                 <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2023</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300">Universitas Negeri Yogyakarta - National Level Scientific Paper</p>
+              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.unysef12Category">Universitas Negeri Yogyakarta - National Level Scientific Paper</p>
             </div>
           </li>
         </ul>
@@ -744,13 +762,13 @@
     </section>
 
     <section id="skills" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Browse My Recent</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Skills</h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="skills.subtitle">Browse My Recent</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in" data-translate="skills.title">Skills</h1>
 
       <!-- AI Development Skills -->
       <div class="flex justify-center mt-12">
         <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
-          <h2 class="text-2xl font-semibold text-center mb-6">AI Development</h2>
+          <h2 class="text-2xl font-semibold text-center mb-6" data-translate="skills.aiDev">AI Development</h2>
           <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 items-center">
             <div class="flex flex-col items-center group">
               <div
@@ -848,7 +866,7 @@
       <!-- Web Development Skills -->
       <div class="flex justify-center mt-8">
         <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
-          <h2 class="text-2xl font-semibold text-center mb-6">Web Development</h2>
+          <h2 class="text-2xl font-semibold text-center mb-6" data-translate="skills.webDev">Web Development</h2>
           <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 items-center">
             <div class="flex flex-col items-center group">
               <div
@@ -955,7 +973,7 @@
       <!-- DevOps Skills -->
       <div class="flex justify-center mt-8">
         <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
-          <h2 class="text-2xl font-semibold text-center mb-6">DevOps</h2>
+          <h2 class="text-2xl font-semibold text-center mb-6" data-translate="skills.devops">DevOps</h2>
           <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 items-center">
             <div class="flex flex-col items-center group">
               <div
@@ -983,14 +1001,32 @@
               </div>
               <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Git</span>
             </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=cloudflare" alt="Cloudflare" title="Cloudflare" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Cloudflare</span>
+            </div>
+
+            <div class="flex flex-col items-center group">
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
+              >
+                <img src="https://skillicons.dev/icons?i=gcp" alt="GCP" title="GCP" class="w-full h-full object-contain" />
+              </div>
+              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">GCP</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <section id="projects" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in">Browse My Recent</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in">Projects</h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="projects.subtitle">Browse My Recent</p>
+      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in" data-translate="projects.title">Projects</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
         <!-- Project 1 -->
         <div
@@ -1008,7 +1044,7 @@
             <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">Whisper</span>
           </div>
           <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">QudoAgent Orchestrator</h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed">
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed" data-translate="projects.qudoDesc">
             Multi-agent architecture using LLMs for task scheduling, vector RAG integration, Whisper speech transcription, and local inference management via Ollama.
           </p>
           <div class="flex gap-3 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
@@ -1022,7 +1058,7 @@
               class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-1.5"
               onclick="window.open('#')"
             >
-              <i class="bi bi-box-arrow-up-right"></i>Live Demo
+              <i class="bi bi-box-arrow-up-right"></i><span data-translate="projects.liveDemo">Live Demo</span>
             </button>
           </div>
         </div>
@@ -1038,11 +1074,11 @@
           </div>
           <div class="flex flex-wrap gap-1.5 mb-3">
             <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Laravel</span>
-            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Vue.js</span>
+            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">Vue.js</span>
             <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Pandas</span>
           </div>
           <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Fintech Stakeholder Analytics</h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed">Analytical dashboard built for UNS Fintech Center to process stakeholder survey data using KANO, SSI, and IPA satisfaction formulas.</p>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed" data-translate="projects.fintechDesc">Analytical dashboard built for UNS Fintech Center to process stakeholder survey data using KANO, SSI, and IPA satisfaction formulas.</p>
           <div class="flex gap-3 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
             <button
               class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5"
@@ -1054,7 +1090,7 @@
               class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-1.5"
               onclick="window.open('#')"
             >
-              <i class="bi bi-box-arrow-up-right"></i>Live Demo
+              <i class="bi bi-box-arrow-up-right"></i><span data-translate="projects.liveDemo">Live Demo</span>
             </button>
           </div>
         </div>
@@ -1080,7 +1116,7 @@
             >
           </div>
           <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Hajj Cost Predictor Engine</h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed">
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed" data-translate="projects.hajjDesc">
             Machine learning regression models optimized with Genetic Algorithms to forecast Hajj expenditures based on inflation and administrative indices.
           </p>
           <div class="flex gap-3 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
@@ -1094,7 +1130,7 @@
               class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-1.5"
               onclick="window.open('#')"
             >
-              <i class="bi bi-box-arrow-up-right"></i>Live Demo
+              <i class="bi bi-box-arrow-up-right"></i><span data-translate="projects.liveDemo">Live Demo</span>
             </button>
           </div>
         </div>
@@ -1107,14 +1143,14 @@
       >
         <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.06] bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:24px_24px]"></div>
         <div class="relative z-10">
-          <p class="text-indigo-500 dark:text-indigo-400 font-bold uppercase tracking-widest text-xs mb-2">Curriculum Vitae</p>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Professional Resume</h2>
-          <p class="text-slate-300 dark:text-slate-400 mb-8 max-w-md mx-auto text-sm leading-relaxed">Interested in reviewing my detailed academic background, skillsets, and professional experiences? Access the full PDF below.</p>
+          <p class="text-indigo-500 dark:text-indigo-400 font-bold uppercase tracking-widest text-xs mb-2" data-translate="resume.cv">Curriculum Vitae</p>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4" data-translate="resume.title">Professional Resume</h2>
+          <p class="text-slate-300 dark:text-slate-400 mb-8 max-w-md mx-auto text-sm leading-relaxed" data-translate="resume.desc">Interested in reviewing my detailed academic background, skillsets, and professional experiences? Access the full PDF below.</p>
           <button
             class="font-semibold py-3.5 px-8 rounded-full bg-white text-gray-900 hover:bg-slate-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-indigo-500/15"
             onclick="window.open('./assets/CV_Muhammad Anang Fathur Rohman.pdf')"
           >
-            <i class="bi bi-file-earmark-arrow-down-fill mr-2"></i>Download Resume PDF
+            <i class="bi bi-file-earmark-arrow-down-fill mr-2"></i><span data-translate="resume.btnText">Download Resume PDF</span>
           </button>
         </div>
       </div>
@@ -1124,16 +1160,16 @@
       <div class="container mx-auto px-8">
         <nav class="flex justify-center mb-4">
           <ul class="flex flex-wrap justify-center gap-8 list-none text-lg">
-            <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400">About</a></li>
-            <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400">Education</a></li>
-            <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400">Experiences</a></li>
-            <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400">Competitions</a></li>
-            <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400">Skills</a></li>
-            <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400">Projects</a></li>
-            <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400">Resume</a></li>
+            <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.about">About</a></li>
+            <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.education">Education</a></li>
+            <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.experiences">Experiences</a></li>
+            <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.competitions">Competitions</a></li>
+            <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.skills">Skills</a></li>
+            <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.projects">Projects</a></li>
+            <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.resume">Resume</a></li>
           </ul>
         </nav>
-        <p class="text-center text-sm text-gray-500 dark:text-gray-400">&copy; 2025 Muhammad Anang Fathur Rohman. All Rights Reserved.</p>
+        <p class="text-center text-sm text-gray-500 dark:text-gray-400" data-translate="footer.copyright">&copy; 2025 Muhammad Anang Fathur Rohman. All Rights Reserved.</p>
       </div>
     </footer>
 
@@ -1209,19 +1245,376 @@
         });
       });
 
-      // NEW: Typing Effect with Typed.js
-      document.addEventListener("DOMContentLoaded", () => {
-        const options = {
-          strings: ["AI Engineer", "Web Developer", "Computer Scientist"], // The words to type
-          typeSpeed: 100, // Speed of typing in milliseconds
-          backSpeed: 50, // Speed of deleting in milliseconds
-          backDelay: 2000, // Pause after typing a word (2 seconds)
-          loop: true,
-          showCursor: true, // Show the blinking cursor
-          cursorChar: "|", // The character for the cursor
-        };
+      // Bilingual Translation Data and Logic
+      const translations = {
+        en: {
+          title: "AnangFath | Portfolio",
+          metaDesc: "Muhammad Anang Fathur Rohman's professional portfolio. AI Engineer, Web Developer, and Computer Scientist.",
+          nav: {
+            about: "About",
+            education: "Education",
+            experiences: "Experiences",
+            competitions: "Competitions",
+            skills: "Skills",
+            projects: "Projects",
+            resume: "Resume"
+          },
+          sidebar: {
+            home: "Home",
+            about: "About",
+            education: "Education",
+            experiences: "Experiences",
+            competitions: "Competitions",
+            skills: "Skills",
+            projects: "Projects",
+            resume: "Resume"
+          },
+          hero: {
+            hello: "Hello, I'm",
+            downloadCv: "Download CV"
+          },
+          about: {
+            subtitle: "Get To Know More",
+            title: "About Me",
+            biodataTitle: "Biodata",
+            biodataSubtitle: "Quick facts about me",
+            birthday: "Birthday",
+            birthdayValue: "Jan 15, 2003",
+            address: "Address",
+            addressValue: "Gondangrejo, Karanganyar",
+            gender: "Gender",
+            genderValue: "Male",
+            description: "I am a passionate and dedicated web developer and machine learning enthusiast currently pursuing my Bachelor's degree at Universitas Sebelas Maret. I thrive on solving complex problems and building efficient, user-friendly applications. My goal is to leverage technology to create meaningful and impactful solutions."
+          },
+          education: {
+            subtitle: "My Background",
+            title: "Education",
+            man1Value: "Achieved 753,54 on UTBK Score.",
+            unsDegree: "Bachelor's in Informatics (2021 - 2025)",
+            unsGpa: "GPA: 3.85/4.00",
+            courseworkTitle: "Relevant Coursework",
+            coursework: {
+              dsa: "Data Structures and Algorithms",
+              db: "Database Systems",
+              ml: "Machine Learning",
+              ai: "Artificial Intelligence",
+              se: "Software Engineering"
+            }
+          },
+          experiences: {
+            subtitle: "Explore My",
+            title: "Experiences",
+            qudo: {
+              role: "AI Engineer",
+              type: "Contract",
+              duration: "Nov 2025 - Present",
+              bullet1: "Designed and implemented LLM-based multi-agent architectures for task orchestration, knowledge retrieval, and decision routing.",
+              bullet2: "Integrated RAG pipelines with vector databases (embedding, indexing, reranking).",
+              bullet3: "Deployed and managed local LLM inference using Ollama with multiple open-source models for production workloads.",
+              bullet4: "Developed Speech-to-Text (STT) pipelines using Whisper for domain-specific transcription in on-prem environments.",
+              bullet5: "Built Text-to-Speech (TTS) services using Coqui TTS, Edge TTS, Piper, and Chatterbox."
+            },
+            fintech: {
+              role: "SoftWare Developer",
+              type: "Freelance",
+              duration: "Nov 2024 - Nov 2025",
+              bullet1: "Processed raw data from CSV files into structured SQL syntax using Pandas, enabling seamless data integration into databases.",
+              bullet2: "Developed analytical formulas for KANO, SSI (Stakeholder Satisfaction Index), and IPA (Importance Performance Analysis) to evaluate stakeholder satisfaction levels.",
+              bullet3: "Built and maintained an interactive web application using Laravel and Vue.js to visualize data in an intuitive and user-friendly manner.",
+              bullet4: "Designed and implemented an AI model to predict Hajj Costs using Linear Regression and Genetic Algorithm techniques to enhance forecasting accuracy."
+            },
+            bangkit: {
+              role: "Machine Learning Cohort",
+              duration: "Studi Independen, Aug 2023 - Jan 2024"
+            },
+            tutor: {
+              role: "Peers Tutor",
+              duration: "Aug 2023 - Jan 2024"
+            },
+            dosbing: {
+              role: "Lecturer's Assistant of Database System",
+              duration: "Sept - Dec 2023"
+            },
+            lab: {
+              role: "Computer Lab Assistant",
+              duration: "Sept 2021 - Dec 2023"
+            }
+          },
+          competitions: {
+            subtitle: "My Achievements",
+            title: "Competitions",
+            gemastikAward: "★ Juara 1 (Nasional)",
+            gemastikYear: "Year 2023",
+            gemastikCategory: "Scientific Writing Category",
+            gemastikDesc: "National Achievement Center (Puspresnas) - The most prestigious National Student ICT Competition in Indonesia.",
+            headerJuara1: "🏆 Juara 1 / First Place Achievements",
+            headerJuara2: "🥈 Juara 2 / Second Place Achievements",
+            nextupCategory: "Scientific Paper Category",
+            codefestCategory: "Universitas Sumatera Utara - Scientific Paper Category",
+            actionCategory: "Scientific Paper Category",
+            unsPaperCategory: "Faculty of Information Technology and Data Science - Universitas Sebelas Maret",
+            airlanggaCategory: "Universitas Airlangga - Ideas Competition Category",
+            unysef14Category: "Universitas Negeri Yogyakarta - National Level Scientific Paper",
+            unityCategory: "Scientific Paper Category",
+            medsciCategory: "Lomba Karya Tulis Ilmiah Nasional",
+            upnCategory: "UPN Veteran Jakarta - National Scientific Paper",
+            unysef12Category: "Universitas Negeri Yogyakarta - National Level Scientific Paper"
+          },
+          skills: {
+            subtitle: "Browse My Recent",
+            title: "Skills",
+            aiDev: "AI Development",
+            webDev: "Web Development",
+            devops: "DevOps"
+          },
+          projects: {
+            subtitle: "Browse My Recent",
+            title: "Projects",
+            qudoDesc: "Multi-agent architecture using LLMs for task scheduling, vector RAG integration, Whisper speech transcription, and local inference management via Ollama.",
+            fintechDesc: "Analytical dashboard built for UNS Fintech Center to process stakeholder survey data using KANO, SSI, and IPA satisfaction formulas.",
+            hajjDesc: "Machine learning regression models optimized with Genetic Algorithms to forecast Hajj expenditures based on inflation and administrative indices.",
+            liveDemo: "Live Demo"
+          },
+          resume: {
+            cv: "Curriculum Vitae",
+            title: "Professional Resume",
+            desc: "Interested in reviewing my detailed academic background, skillsets, and professional experiences? Access the full PDF below.",
+            btnText: "Download Resume PDF"
+          },
+          footer: {
+            copyright: "© 2025 Muhammad Anang Fathur Rohman. All Rights Reserved."
+          }
+        },
+        id: {
+          title: "AnangFath | Portofolio",
+          metaDesc: "Portofolio profesional Muhammad Anang Fathur Rohman. AI Engineer, Web Developer, dan Ilmuwan Komputer.",
+          nav: {
+            about: "Tentang",
+            education: "Pendidikan",
+            experiences: "Pengalaman",
+            competitions: "Kompetisi",
+            skills: "Keahlian",
+            projects: "Proyek",
+            resume: "Resume"
+          },
+          sidebar: {
+            home: "Beranda",
+            about: "Tentang",
+            education: "Pendidikan",
+            experiences: "Pengalaman",
+            competitions: "Kompetisi",
+            skills: "Keahlian",
+            projects: "Proyek",
+            resume: "Resume"
+          },
+          hero: {
+            hello: "Halo, saya",
+            downloadCv: "Unduh CV"
+          },
+          about: {
+            subtitle: "Kenali Lebih Dekat",
+            title: "Tentang Saya",
+            biodataTitle: "Biodata",
+            biodataSubtitle: "Fakta singkat tentang saya",
+            birthday: "Tanggal Lahir",
+            birthdayValue: "15 Jan 2003",
+            address: "Alamat",
+            addressValue: "Gondangrejo, Karanganyar",
+            gender: "Jenis Kelamin",
+            genderValue: "Laki-laki",
+            description: "Saya adalah pengembang web dan peminat machine learning yang bersemangat dan berdedikasi, yang saat ini sedang menempuh pendidikan Sarjana di Universitas Sebelas Maret. Saya senang memecahkan masalah kompleks dan membangun aplikasi yang efisien dan ramah pengguna. Tujuan saya adalah memanfaatkan teknologi untuk menciptakan solusi yang bermakna dan berdampak."
+          },
+          education: {
+            subtitle: "Latar Belakang Saya",
+            title: "Pendidikan",
+            man1Value: "Meraih skor UTBK sebesar 753,54.",
+            unsDegree: "Sarjana Informatika (2021 - 2025)",
+            unsGpa: "IPK: 3.85/4.00",
+            courseworkTitle: "Mata Kuliah Relevan",
+            coursework: {
+              dsa: "Struktur Data dan Algoritma",
+              db: "Sistem Basis Data",
+              ml: "Pembelajaran Mesin",
+              ai: "Kecerdasan Buatan",
+              se: "Rekayasa Perangkat Lunak"
+            }
+          },
+          experiences: {
+            subtitle: "Jelajahi",
+            title: "Pengalaman",
+            qudo: {
+              role: "AI Engineer",
+              type: "Kontrak",
+              duration: "Nov 2025 - Sekarang",
+              bullet1: "Merancang dan mengimplementasikan arsitektur multi-agent berbasis LLM untuk orkestrasi tugas, pengambilan pengetahuan, dan perutean keputusan.",
+              bullet2: "Mengintegrasikan pipeline RAG dengan basis data vektor (embedding, indexing, reranking).",
+              bullet3: "Mendeploy dan mengelola inferensi LLM lokal menggunakan Ollama dengan berbagai model open-source untuk beban kerja produksi.",
+              bullet4: "Mengembangkan pipeline Speech-to-Text (STT) menggunakan Whisper untuk transkripsi khusus domain di lingkungan on-premise.",
+              bullet5: "Membangun layanan Text-to-Speech (TTS) menggunakan Coqui TTS, Edge TTS, Piper, dan Chatterbox."
+            },
+            fintech: {
+              role: "Software Developer",
+              type: "Pekerja Lepas",
+              duration: "Nov 2024 - Nov 2025",
+              bullet1: "Memproses data mentah dari file CSV menjadi sintaks SQL terstruktur menggunakan Pandas, memungkinkan integrasi data yang mulus ke dalam basis data.",
+              bullet2: "Mengembangkan formula analitis untuk KANO, SSI (Stakeholder Satisfaction Index), dan IPA (Importance Performance Analysis) untuk mengevaluasi tingkat kepuasan pemangku kepentingan.",
+              bullet3: "Membangun dan memelihara aplikasi web interaktif menggunakan Laravel and Vue.js untuk memvisualisasikan data secara intuitif dan ramah pengguna.",
+              bullet4: "Merancang dan mengimplementasikan model AI untuk memprediksi Biaya Haji menggunakan teknik Regresi Linier dan Algoritma Genetika untuk meningkatkan akurasi prakiraan."
+            },
+            bangkit: {
+              role: "Peserta Machine Learning",
+              duration: "Studi Independen, Agu 2023 - Jan 2024"
+            },
+            tutor: {
+              role: "Tutor Sebaya",
+              duration: "Agu 2023 - Jan 2024"
+            },
+            dosbing: {
+              role: "Asisten Dosen Sistem Basis Data",
+              duration: "Sep - Des 2023"
+            },
+            lab: {
+              role: "Asisten Laboratorium Komputer",
+              duration: "Sep 2021 - Des 2023"
+            }
+          },
+          competitions: {
+            subtitle: "Pencapaian Saya",
+            title: "Kompetisi",
+            gemastikAward: "★ Juara 1 (Nasional)",
+            gemastikYear: "Tahun 2023",
+            gemastikCategory: "Bidang Karya Tulis Ilmiah",
+            gemastikDesc: "Pusat Prestasi Nasional (Puspresnas) - Kompetisi TIK Mahasiswa Tingkat Nasional paling bergengsi di Indonesia.",
+            headerJuara1: "🏆 Juara 1 / Prestasi Juara 1",
+            headerJuara2: "🥈 Juara 2 / Prestasi Juara 2",
+            nextupCategory: "Kategori Karya Tulis Ilmiah",
+            codefestCategory: "Universitas Sumatera Utara - Kategori Karya Tulis Ilmiah",
+            actionCategory: "Kategori Karya Tulis Ilmiah",
+            unsPaperCategory: "Fakultas Teknologi Informasi dan Sains Data - Universitas Sebelas Maret",
+            airlanggaCategory: "Universitas Airlangga - Kategori Kompetisi Ide",
+            unysef14Category: "Universitas Negeri Yogyakarta - Karya Tulis Ilmiah Tingkat Nasional",
+            unityCategory: "Kategori Karya Tulis Ilmiah",
+            medsciCategory: "Lomba Karya Tulis Ilmiah Nasional",
+            upnCategory: "UPN Veteran Jakarta - Karya Tulis Ilmiah Nasional",
+            unysef12Category: "Universitas Negeri Yogyakarta - Karya Tulis Ilmiah Tingkat Nasional"
+          },
+          skills: {
+            subtitle: "Telusuri Keahlian",
+            title: "Keahlian",
+            aiDev: "Pengembangan AI",
+            webDev: "Pengembangan Web",
+            devops: "DevOps"
+          },
+          projects: {
+            subtitle: "Telusuri Proyek",
+            title: "Proyek",
+            qudoDesc: "Arsitektur multi-agent menggunakan LLM untuk penjadwalan tugas, integrasi RAG vektor, transkripsi ucapan Whisper, dan manajemen inferensi lokal melalui Ollama.",
+            fintechDesc: "Dashboard analitik yang dibangun untuk UNS Fintech Center untuk memproses data survei pemangku kepentingan menggunakan formula kepuasan KANO, SSI, dan IPA.",
+            hajjDesc: "Model regresi machine learning yang dioptimalkan dengan Algoritma Genetika untuk memprediksi pengeluaran Haji berdasarkan inflasi dan indeks administratif.",
+            liveDemo: "Demo Langsung"
+          },
+          resume: {
+            cv: "Daftar Riwayat Hidup",
+            title: "Resume Profesional",
+            desc: "Tertarik untuk meninjau latar belakang akademis, keahlian, dan pengalaman profesional saya secara detail? Akses PDF lengkap di bawah ini.",
+            btnText: "Unduh PDF Resume"
+          },
+          footer: {
+            copyright: "© 2025 Muhammad Anang Fathur Rohman. Hak Cipta Dilindungi."
+          }
+        }
+      };
 
-        const typed = new Typed("#typing-effect", options);
+      function getTranslation(obj, path) {
+        return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+      }
+
+      window.typedInstance = null;
+
+      function setLanguage(lang) {
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+
+        // Highlight active buttons
+        const activeClassList = ["bg-indigo-600", "text-white", "shadow-sm"];
+        const inactiveClassList = ["text-gray-500", "dark:text-gray-400", "hover:text-gray-900", "dark:hover:text-gray-200"];
+
+        const enButtons = document.querySelectorAll("#lang-en-desktop, #lang-en-mobile");
+        const idButtons = document.querySelectorAll("#lang-id-desktop, #lang-id-mobile");
+
+        if (lang === "en") {
+          enButtons.forEach(btn => {
+            btn.classList.add(...activeClassList);
+            btn.classList.remove(...inactiveClassList);
+          });
+          idButtons.forEach(btn => {
+            btn.classList.remove(...activeClassList);
+            btn.classList.add(...inactiveClassList);
+          });
+        } else {
+          idButtons.forEach(btn => {
+            btn.classList.add(...activeClassList);
+            btn.classList.remove(...inactiveClassList);
+          });
+          enButtons.forEach(btn => {
+            btn.classList.remove(...activeClassList);
+            btn.classList.add(...inactiveClassList);
+          });
+        }
+
+        // Translate title
+        document.title = translations[lang].title;
+
+        // Translate meta description
+        const metaDescEl = document.getElementById("meta-desc");
+        if (metaDescEl) {
+          metaDescEl.setAttribute("content", translations[lang].metaDesc);
+        }
+
+        // Translate all elements with [data-translate]
+        document.querySelectorAll("[data-translate]").forEach(el => {
+          const key = el.getAttribute("data-translate");
+          const translatedText = getTranslation(translations[lang], key);
+          if (translatedText) {
+            el.textContent = translatedText;
+          }
+        });
+
+        // Save preference
+        localStorage.setItem("preferred-lang", lang);
+
+        // Update Typed.js effect
+        if (window.typedInstance) {
+          window.typedInstance.destroy();
+        }
+
+        const strings = lang === "en"
+          ? ["AI Engineer", "Web Developer", "Computer Scientist"]
+          : ["AI Engineer", "Web Developer", "Ilmuwan Komputer"];
+
+        if (typeof Typed !== 'undefined') {
+          window.typedInstance = new Typed("#typing-effect", {
+            strings: strings,
+            typeSpeed: 100,
+            backSpeed: 50,
+            backDelay: 2000,
+            loop: true,
+            showCursor: true,
+            cursorChar: "|",
+          });
+        }
+
+        // Make sure to update the sidebar indicator positioning if active
+        if (window.updateIndicator) {
+          setTimeout(window.updateIndicator, 100);
+        }
+      }
+
+      // DOMContentLoaded
+      document.addEventListener("DOMContentLoaded", () => {
+        // Initialize language
+        const preferredLang = localStorage.getItem("preferred-lang") || "en";
+        setLanguage(preferredLang);
 
         // Intersection Observer for scroll animations
         const observerOptions = {
@@ -1269,6 +1662,7 @@
               indicator.style.opacity = "0";
             }
           };
+          window.updateIndicator = updateIndicator; // Export globally
 
           const setActiveLink = (sectionId) => {
             sideNavLinks.forEach((link) => {
