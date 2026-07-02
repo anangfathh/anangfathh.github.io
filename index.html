@@ -188,6 +188,29 @@
       ::view-transition-new(root) {
         z-index: 9999;
       }
+      /* Accent underline animation */
+      .nav-underline {
+        position: relative;
+      }
+      .nav-underline::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #4f46e5; /* Indigo-600 */
+        transform-origin: bottom right;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .dark .nav-underline::after {
+        background-color: #818cf8; /* Indigo-400 */
+      }
+      .nav-underline:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
     </style>
     <script>
       // Tailwind dark mode configuration
@@ -201,13 +224,13 @@
       <div class="text-2xl font-bold cursor-default">AnangFath</div>
       <div>
         <ul class="flex gap-8 list-none text-lg">
-          <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.about">About</a></li>
-          <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.education">Education</a></li>
-          <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.experiences">Experiences</a></li>
-          <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.competitions">Competitions</a></li>
-          <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.skills">Skills</a></li>
-          <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.projects">Projects</a></li>
-          <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.resume">Resume</a></li>
+          <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.about">About</a></li>
+          <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.education">Education</a></li>
+          <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.experiences">Experiences</a></li>
+          <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.competitions">Competitions</a></li>
+          <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.skills">Skills</a></li>
+          <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.projects">Projects</a></li>
+          <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.resume">Resume</a></li>
         </ul>
       </div>
       <div class="flex items-center gap-4">
@@ -1160,13 +1183,13 @@
       <div class="container mx-auto px-8">
         <nav class="flex justify-center mb-4">
           <ul class="flex flex-wrap justify-center gap-8 list-none text-lg">
-            <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.about">About</a></li>
-            <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.education">Education</a></li>
-            <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.experiences">Experiences</a></li>
-            <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.competitions">Competitions</a></li>
-            <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.skills">Skills</a></li>
-            <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.projects">Projects</a></li>
-            <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400" data-translate="nav.resume">Resume</a></li>
+            <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.about">About</a></li>
+            <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.education">Education</a></li>
+            <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.experiences">Experiences</a></li>
+            <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.competitions">Competitions</a></li>
+            <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.skills">Skills</a></li>
+            <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.projects">Projects</a></li>
+            <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.resume">Resume</a></li>
           </ul>
         </nav>
         <p class="text-center text-sm text-gray-500 dark:text-gray-400" data-translate="footer.copyright">&copy; 2025 Muhammad Anang Fathur Rohman. All Rights Reserved.</p>
