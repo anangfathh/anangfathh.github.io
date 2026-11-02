@@ -20,6 +20,116 @@
       html {
         scroll-behavior: smooth;
       }
+      /* Keyboard focus: was invisible everywhere */
+      :focus-visible {
+        outline: 2px solid #4f46e5;
+        outline-offset: 3px;
+        border-radius: 0.5rem;
+      }
+      .dark :focus-visible {
+        outline-color: #a5b4fc;
+      }
+      /* Section headings */
+      .section-eyebrow {
+        text-align: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #4f46e5;
+        margin-bottom: 0.5rem;
+      }
+      .dark .section-eyebrow {
+        color: #a5b4fc;
+      }
+      .section-title {
+        position: relative;
+        text-align: center;
+        font-size: 2.25rem;
+        line-height: 1.15;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        padding-bottom: 1.25rem;
+      }
+      @media (min-width: 768px) {
+        .section-title {
+          font-size: 3rem;
+        }
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 3rem;
+        height: 4px;
+        border-radius: 9999px;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, #6366f1, #a855f7);
+      }
+      /* Experience cards */
+      .icon-tile {
+        flex-shrink: 0;
+        width: 2.75rem;
+        height: 2.75rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.875rem;
+        font-size: 1.25rem;
+        color: #4f46e5;
+        background: #eef2ff;
+      }
+      .dark .icon-tile {
+        color: #c7d2fe;
+        background: rgba(99, 102, 241, 0.18);
+      }
+      .meta-chip {
+        display: inline-block;
+        margin-left: 0.4rem;
+        padding: 0.1rem 0.55rem;
+        border-radius: 9999px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        vertical-align: 1px;
+        color: #4338ca;
+        background: #eef2ff;
+      }
+      .dark .meta-chip {
+        color: #c7d2fe;
+        background: rgba(99, 102, 241, 0.18);
+      }
+      /* Hero backdrop */
+      .hero-glow {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background:
+          radial-gradient(40rem 28rem at 15% 25%, rgba(99, 102, 241, 0.14), transparent 70%),
+          radial-gradient(36rem 26rem at 85% 70%, rgba(168, 85, 247, 0.12), transparent 70%);
+      }
+      .dark .hero-glow {
+        background:
+          radial-gradient(40rem 28rem at 15% 25%, rgba(99, 102, 241, 0.22), transparent 70%),
+          radial-gradient(36rem 26rem at 85% 70%, rgba(168, 85, 247, 0.16), transparent 70%);
+      }
+      /* Mobile menu icon -> X (this state had no CSS, so it never animated) */
+      .hamburger-icon.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .hamburger-icon.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger-icon.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+      #top-nav.is-scrolled {
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+      }
+      .dark #top-nav.is-scrolled {
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
       /* Animation styles */
       .fade-in {
         opacity: 0;
@@ -211,7 +321,29 @@
         transform: scaleX(1);
         transform-origin: bottom left;
       }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .fade-in,
+        .fade-in-left,
+        .fade-in-right {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
     </style>
+    <noscript>
+      <style>
+        .fade-in,
+        .fade-in-left,
+        .fade-in-right {
+          opacity: 1;
+          transform: none;
+        }
+      </style>
+    </noscript>
     <script>
       // Tailwind dark mode configuration
       tailwind.config = {
@@ -220,8 +352,8 @@
     </script>
   </head>
   <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
-    <nav class="hidden md:flex justify-around items-center h-20 min-h-[70px] bg-transparent z-50 relative">
-      <div class="text-2xl font-bold cursor-default">AnangFath</div>
+    <nav id="top-nav" aria-label="Main" class="hidden lg:flex sticky top-0 z-50 justify-around items-center h-20 min-h-[70px] bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-md transition-shadow duration-300">
+      <a href="#hero" class="text-2xl font-bold tracking-tight hover:text-indigo-600 dark:hover:text-indigo-400">AnangFath</a>
       <div>
         <ul class="flex gap-8 list-none text-lg">
           <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.about">About</a></li>
@@ -239,32 +371,32 @@
           <button id="lang-en-desktop" class="px-2.5 py-1 rounded-full text-xs font-semibold transition-all duration-200" onclick="setLanguage('en')">EN</button>
           <button id="lang-id-desktop" class="px-2.5 py-1 rounded-full text-xs font-semibold transition-all duration-200" onclick="setLanguage('id')">ID</button>
         </div>
-        <button id="theme-toggle-desktop" class="text-2xl">
+        <button id="theme-toggle-desktop" class="text-2xl" aria-label="Toggle dark mode" title="Toggle dark mode">
           <i class="bi bi-sun"></i>
           <i class="bi bi-moon hidden"></i>
         </button>
       </div>
     </nav>
 
-    <nav class="sticky top-0 z-50 md:hidden flex justify-between items-center px-6 h-16 min-h-[64px] bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm">
-      <div class="text-2xl font-bold cursor-default">Anangfath</div>
+    <nav id="top-nav-mobile" aria-label="Main" class="sticky top-0 z-50 lg:hidden flex justify-between items-center px-6 h-16 min-h-[64px] bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
+      <a href="#hero" class="text-2xl font-bold tracking-tight">AnangFath</a>
       <div class="flex items-center gap-4">
         <!-- Language Switcher Mobile -->
         <div class="flex items-center gap-1 text-[10px] border border-gray-200 dark:border-gray-800 rounded-full p-0.5 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
           <button id="lang-en-mobile" class="px-2 py-0.5 rounded-full text-[10px] font-semibold transition-all duration-200" onclick="setLanguage('en')">EN</button>
           <button id="lang-id-mobile" class="px-2 py-0.5 rounded-full text-[10px] font-semibold transition-all duration-200" onclick="setLanguage('id')">ID</button>
         </div>
-        <button id="theme-toggle-mobile" class="text-xl">
+        <button id="theme-toggle-mobile" class="text-xl" aria-label="Toggle dark mode" title="Toggle dark mode">
           <i class="bi bi-sun"></i>
           <i class="bi bi-moon hidden"></i>
         </button>
         <div class="relative">
-          <div class="hamburger-icon space-y-1.5 cursor-pointer" onclick="toggleMenu()">
-            <span class="block w-6 h-0.5 bg-black dark:bg-white transition-transform duration-300"></span>
-            <span class="block w-6 h-0.5 bg-black dark:bg-white transition-opacity duration-300"></span>
-            <span class="block w-6 h-0.5 bg-black dark:bg-white transition-transform duration-300"></span>
-          </div>
-          <div class="menu-links absolute top-full right-0 bg-white dark:bg-gray-800 shadow-lg rounded-md w-40 max-h-0 overflow-hidden transition-all duration-300 mt-4">
+          <button type="button" class="hamburger-icon block space-y-1.5 cursor-pointer p-1 -m-1" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span class="block w-6 h-0.5 bg-gray-900 dark:bg-white transition-transform duration-300"></span>
+            <span class="block w-6 h-0.5 bg-gray-900 dark:bg-white transition-opacity duration-300"></span>
+            <span class="block w-6 h-0.5 bg-gray-900 dark:bg-white transition-transform duration-300"></span>
+          </button>
+          <div id="mobile-menu" class="menu-links invisible absolute top-full right-0 bg-white dark:bg-gray-800 shadow-lg rounded-xl w-44 max-h-0 overflow-hidden transition-all duration-300 mt-4">
             <ul class="list-none">
               <li><a href="#about" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700" data-translate="nav.about">About</a></li>
               <li><a href="#education" onclick="toggleMenu()" class="block p-3 text-center hover:bg-gray-100 dark:hover:bg-gray-700" data-translate="nav.education">Education</a></li>
@@ -338,35 +470,45 @@
       </nav>
     </aside>
 
-    <section id="hero" class="snap-section flex flex-col md:flex-row justify-center items-center gap-12 md:gap-20 px-8 lg:pl-32 min-h-[80vh]">
-      <div class="w-64 h-64 md:w-80 md:h-80 fade-in-left">
-        <img src=".\assets\3df6614b-03bb-4051-89b7-502eef8df841.png" alt="My Profile Picture" class="rounded-full w-full h-full object-cover shadow-lg" />
+    <section id="hero" class="snap-section relative overflow-hidden flex flex-col md:flex-row justify-center items-center gap-10 md:gap-16 px-8 lg:px-32 scroll-mt-20 py-12 min-h-[calc(100svh-4rem)] lg:min-h-[calc(100svh-5rem)]">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="relative z-10 w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 shrink-0 fade-in-left">
+        <div class="absolute -inset-4 rounded-full bg-gradient-to-br from-indigo-500/30 to-purple-500/20 blur-2xl" aria-hidden="true"></div>
+        <img src="./assets/3df6614b-03bb-4051-89b7-502eef8df841.png" alt="Portrait of Muhammad Anang Fathur Rohman" class="relative rounded-full w-full h-full object-cover bg-white ring-4 ring-white dark:ring-gray-800 shadow-xl" />
       </div>
-      <div class="text-center fade-in-right">
-        <p class="font-semibold text-gray-600 dark:text-gray-400" data-translate="hero.hello">Hello, I'm</p>
-        <h1 class="text-4xl md:text-5xl font-bold my-2">Muhammad Anang Fathur Rohman</h1>
-        <p class="text-2xl text-gray-700 dark:text-gray-300 mb-6"><span id="typing-effect"></span></p>
-        <div class="flex justify-center gap-4">
-          <button
-            class="font-semibold py-3 px-6 rounded-full border-2 border-gray-800 dark:border-gray-200 hover:bg-gray-800 hover:text-white dark:hover:bg-gray-200 dark:hover:text-gray-800 transition-all duration-300"
-            onclick="window.open('./assets/CV_Muhammad Anang Fathur Rohman.pdf')"
+      <div class="relative z-10 text-center md:text-left max-w-xl fade-in-right">
+        <p class="section-eyebrow !text-center md:!text-left" data-translate="hero.hello">Hello, I'm</p>
+        <h1 class="text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-3">Muhammad Anang Fathur Rohman</h1>
+        <p class="text-xl md:text-2xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4 min-h-[2rem] md:min-h-[2.25rem]"><span id="typing-effect"></span></p>
+        <p class="text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-8" data-translate="hero.tagline">I build LLM agents, RAG pipelines, and data-driven web apps.</p>
+        <div class="flex flex-wrap justify-center md:justify-start gap-3">
+          <a
+            href="./assets/CV_Muhammad%20Anang%20Fathur%20Rohman.pdf"
+            download
+            class="inline-flex items-center font-semibold py-3 px-6 rounded-full bg-gray-900 text-white border-2 border-gray-900 hover:bg-indigo-600 hover:border-indigo-600 dark:bg-white dark:text-gray-900 dark:border-white dark:hover:bg-indigo-300 dark:hover:border-indigo-300 transition-all duration-300"
           >
             <i class="bi bi-file-arrow-down-fill mr-2"></i><span data-translate="hero.downloadCv">Download CV</span>
-          </button>
+          </a>
+          <a
+            href="#projects"
+            class="inline-flex items-center font-semibold py-3 px-6 rounded-full border-2 border-gray-300 dark:border-gray-600 hover:border-indigo-600 hover:text-indigo-600 dark:hover:border-indigo-400 dark:hover:text-indigo-400 transition-all duration-300"
+          >
+            <span data-translate="hero.viewProjects">View Projects</span><i class="bi bi-arrow-right ml-2"></i>
+          </a>
         </div>
-        <div class="flex justify-center mt-6 gap-4">
-          <a href="https://www.linkedin.com/in/muhammad-anang-fathur-rohman-7671ba1b0/" target="_blank" class="text-3xl hover:text-gray-500 dark:hover:text-gray-400"><i class="bi bi-linkedin"></i></a>
-          <a href="https://github.com/anangfathh" target="_blank" class="text-3xl hover:text-gray-500 dark:hover:text-gray-400"><i class="bi bi-github"></i></a>
+        <div class="flex justify-center md:justify-start mt-8 gap-5">
+          <a href="https://www.linkedin.com/in/muhammad-anang-fathur-rohman-7671ba1b0/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-3xl hover:text-indigo-600 dark:hover:text-indigo-400"><i class="bi bi-linkedin"></i></a>
+          <a href="https://github.com/anangfathh" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-3xl hover:text-indigo-600 dark:hover:text-indigo-400"><i class="bi bi-github"></i></a>
         </div>
       </div>
     </section>
 
-    <section id="about" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="about.subtitle">Get To Know More</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in" data-translate="about.title">About Me</h1>
+    <section id="about" class="snap-section py-16 px-8 lg:px-32 scroll-mt-20">
+      <p class="section-eyebrow fade-in" data-translate="about.subtitle">Get To Know More</p>
+      <h2 class="section-title fade-in" data-translate="about.title">About Me</h2>
       <div class="flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-16 mt-12">
         <div class="w-64 h-64 md:w-80 md:h-80 flex-shrink-0 fade-in-left">
-          <img src=".\assets\20231210_113931.jpg" alt="Profile Picture" class="rounded-3xl w-full h-full object-cover shadow-lg" />
+          <img src="./assets/20231210_113931.jpg" alt="Profile Picture" class="rounded-3xl w-full h-full object-cover shadow-lg" />
         </div>
         <div class="max-w-2xl text-left fade-in-right">
           <div class="flex flex-col md:flex-row gap-8 mb-8">
@@ -390,7 +532,7 @@
                     <p class="text-base font-medium text-gray-900 dark:text-gray-100" data-translate="about.birthdayValue">Jan 15, 2003</p>
                   </div>
                 </li>
-                <li class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-700 rounded-2xl">
+                <li class="flex items-start gap-3 p-3 sm:order-last sm:col-span-2 bg-gray-50 dark:bg-gray-900/40 border border-gray-200 dark:border-gray-700 rounded-2xl">
                   <div class="p-2 rounded-xl bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-200 shadow-sm">
                     <i class="bi bi-geo-alt-fill"></i>
                   </div>
@@ -419,16 +561,16 @@
       </div>
     </section>
 
-    <section id="education" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="education.subtitle">My Background</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in" data-translate="education.title">Education</h1>
+    <section id="education" class="snap-section py-16 px-8 lg:px-32 scroll-mt-20">
+      <p class="section-eyebrow fade-in" data-translate="education.subtitle">My Background</p>
+      <h2 class="section-title fade-in" data-translate="education.title">Education</h2>
       <div class="mt-12 max-w-3xl mx-auto grid grid-cols-1 gap-6">
         <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg fade-in">
           <div class="flex items-start gap-4">
             <div class="w-16 h-16 flex-shrink-0">
               <img src="./assets/MAN.png" alt="Logo MAN 1 Surakarta" class="w-full h-full rounded-2xl object-contain p-1 bg-indigo-50 dark:bg-indigo-900/40" />
             </div>
-            <div>
+            <div class="min-w-0">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">MAN 1 Surakarta</h3>
               <p class="text-sm text-gray-500 dark:text-gray-400">2018 - 2021</p>
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-300" data-translate="education.man1Value">Achieved 753,54 on UTBK Score.</p>
@@ -440,7 +582,7 @@
             <div class="w-16 h-16 flex-shrink-0">
               <img src="./assets/UNS.png" alt="Logo Universitas Sebelas Maret" class="w-full h-full rounded-2xl object-contain p-1 bg-indigo-50 dark:bg-indigo-900/40" />
             </div>
-            <div>
+            <div class="min-w-0">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Universitas Sebelas Maret</h3>
               <p class="text-sm text-gray-500 dark:text-gray-400" data-translate="education.unsDegree">Bachelor's in Informatics (2021 - 2025)</p>
               <p class="mt-2 text-sm text-gray-600 dark:text-gray-300" data-translate="education.unsGpa">GPA: 3.85/4.00</p>
@@ -478,32 +620,31 @@
       </div>
     </section>
 
-    <section id="experiences" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="experiences.subtitle">Explore My</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in" data-translate="experiences.title">Experiences</h1>
+    <section id="experiences" class="snap-section py-16 px-8 lg:px-32 scroll-mt-20">
+      <p class="section-eyebrow fade-in" data-translate="experiences.subtitle">Explore My</p>
+      <h2 class="section-title fade-in" data-translate="experiences.title">Experiences</h2>
       <div class="mt-12 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
         <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md lg:col-span-2 fade-in">
           <div class="flex items-start gap-4">
-            <i class="bi bi-robot text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
-            <div>
+            <span class="icon-tile"><i class="bi bi-robot"></i></span>
+            <div class="min-w-0">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.qudo.role">AI Engineer</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-300">PT Qudo Buana Nawakara</p>
-              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="experiences.qudo.type">Contract</p>
+              <p class="text-sm font-medium text-gray-700 dark:text-gray-200">PT Qudo Buana Nawakara <span class="meta-chip" data-translate="experiences.qudo.type">Contract</span></p>
               <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.qudo.duration">Nov 2025 - Present</em></p>
-              <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300 list-disc list-outside pl-5">
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet1">
+              <ul class="mt-4 space-y-1 text-sm text-gray-600 dark:text-gray-300 list-disc list-outside pl-5">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet1">
                   Designed and implemented LLM-based multi-agent architectures for task orchestration, knowledge retrieval, and decision routing.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet2">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet2">
                   Integrated RAG pipelines with vector databases (embedding, indexing, reranking).
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet3">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet3">
                   Deployed and managed local LLM inference using Ollama with multiple open-source models for production workloads.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet4">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet4">
                   Developed Speech-to-Text (STT) pipelines using Whisper for domain-specific transcription in on-prem environments.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet5">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.qudo.bullet5">
                   Built Text-to-Speech (TTS) services using Coqui TTS, Edge TTS, Piper, and Chatterbox.
                 </li>
               </ul>
@@ -512,23 +653,22 @@
         </article>
         <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md lg:col-span-2 fade-in">
           <div class="flex items-start gap-4">
-            <i class="bi bi-robot text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
-            <div>
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.fintech.role">SoftWare Developer</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Fintech Center UNS</p>
-              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="experiences.fintech.type">Freelance</p>
+            <span class="icon-tile"><i class="bi bi-code-slash"></i></span>
+            <div class="min-w-0">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.fintech.role">Software Developer</h3>
+              <p class="text-sm font-medium text-gray-700 dark:text-gray-200">Fintech Center UNS <span class="meta-chip" data-translate="experiences.fintech.type">Freelance</span></p>
               <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.fintech.duration">Nov 2024 - Nov 2025</em></p>
-              <ul class="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300 list-disc list-outside pl-5">
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet1">
+              <ul class="mt-4 space-y-1 text-sm text-gray-600 dark:text-gray-300 list-disc list-outside pl-5">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet1">
                   Processed raw data from CSV files into structured SQL syntax using Pandas, enabling seamless data integration into databases.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet2">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet2">
                   Developed analytical formulas for KANO, SSI (Stakeholder Satisfaction Index), and IPA (Importance Performance Analysis) to evaluate stakeholder satisfaction levels.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet3">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet3">
                   Built and maintained an interactive web application using Laravel and Vue.js to visualize data in an intuitive and user-friendly manner.
                 </li>
-                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 hover:translate-x-1 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet4">
+                <li class="rounded-lg px-2 py-1 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700/60 dark:hover:text-gray-100" data-translate="experiences.fintech.bullet4">
                   Designed and implemented an AI model to predict Hajj Costs using Linear Regression and Genetic Algorithm techniques to enhance forecasting accuracy.
                 </li>
               </ul>
@@ -539,8 +679,8 @@
       <div class="mt-12 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
         <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
           <div class="flex items-start gap-4">
-            <i class="bi bi-briefcase-fill text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
-            <div>
+            <span class="icon-tile"><i class="bi bi-briefcase-fill"></i></span>
+            <div class="min-w-0">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.bangkit.role">Machine Learning Cohort</h3>
               <p class="text-sm text-gray-600 dark:text-gray-300">Bangkit Academy</p>
               <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.bangkit.duration">Studi Independen, Aug 2023 - Jan 2024</em></p>
@@ -549,8 +689,8 @@
         </article>
         <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
           <div class="flex items-start gap-4">
-            <i class="bi bi-briefcase-fill text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
-            <div>
+            <span class="icon-tile"><i class="bi bi-briefcase-fill"></i></span>
+            <div class="min-w-0">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.tutor.role">Peers Tutor</h3>
               <p class="text-sm text-gray-600 dark:text-gray-300">Bangkit Academy</p>
               <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.tutor.duration">Aug 2023 - Jan 2024</em></p>
@@ -559,8 +699,8 @@
         </article>
         <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
           <div class="flex items-start gap-4">
-            <i class="bi bi-briefcase-fill text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
-            <div>
+            <span class="icon-tile"><i class="bi bi-briefcase-fill"></i></span>
+            <div class="min-w-0">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.dosbing.role">Lecturer&apos;s Assistant of Database System</h3>
               <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.dosbing.duration">Sept - Dec 2023</em></p>
             </div>
@@ -568,8 +708,8 @@
         </article>
         <article class="p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
           <div class="flex items-start gap-4">
-            <i class="bi bi-briefcase-fill text-xl mt-1 text-gray-700 dark:text-gray-300"></i>
-            <div>
+            <span class="icon-tile"><i class="bi bi-briefcase-fill"></i></span>
+            <div class="min-w-0">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100" data-translate="experiences.lab.role">Computer Lab Assistant</h3>
               <p class="text-sm text-gray-600 dark:text-gray-300">UNS</p>
               <p class="text-sm text-gray-500 dark:text-gray-400"><em data-translate="experiences.lab.duration">Sept 2021 - Dec 2023</em></p>
@@ -579,9 +719,9 @@
       </div>
     </section>
 
-    <section id="competitions" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="competitions.subtitle">My Achievements</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold mb-12 fade-in" data-translate="competitions.title">Competitions</h1>
+    <section id="competitions" class="snap-section py-16 px-8 lg:px-32 scroll-mt-20">
+      <p class="section-eyebrow fade-in" data-translate="competitions.subtitle">My Achievements</p>
+      <h2 class="section-title mb-12 fade-in" data-translate="competitions.title">Competitions</h2>
       <div class="max-w-4xl mx-auto relative pl-4 sm:pl-8">
         <!-- Vertical Timeline Axis -->
         <div class="absolute left-4 sm:left-8 top-2 bottom-2 w-0.5 bg-gray-200 dark:bg-gray-700/60 -translate-x-1/2 z-0"></div>
@@ -605,7 +745,7 @@
               </div>
               <h3 class="text-2xl font-black text-gray-900 dark:text-gray-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors leading-tight">GEMASTIK XVI</h3>
               <p class="text-sm font-semibold text-amber-700 dark:text-amber-400 mt-1" data-translate="competitions.gemastikCategory">Bidang Karya Tulis Ilmiah</p>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed" data-translate="competitions.gemastikDesc">Pusat Prestasi Nasional (Puspresnas) - Kompetisi TIK Mahasiswa Tingkat Nasional paling bergengsi di Indonesia.</p>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 leading-relaxed" data-translate="competitions.gemastikDesc">Pusat Prestasi Nasional (Puspresnas) - Kompetisi TIK Mahasiswa Tingkat Nasional paling bergengsi di Indonesia.</p>
             </div>
           </li>
 
@@ -625,9 +765,9 @@
             <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-amber-500/20">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">NextUP! 2025</h4>
-                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
+                <span class="px-2 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.nextupCategory">Scientific Paper Category</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="competitions.nextupCategory">Scientific Paper Category</p>
             </div>
           </li>
 
@@ -641,9 +781,9 @@
             <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-amber-500/20">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Codefest #1 2025</h4>
-                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
+                <span class="px-2 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.codefestCategory">Universitas Sumatera Utara - Scientific Paper Category</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="competitions.codefestCategory">Universitas Sumatera Utara - Scientific Paper Category</p>
             </div>
           </li>
 
@@ -657,9 +797,9 @@
             <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-amber-500/20">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">National Academic Competition of Data Science (ACTION 2024)</h4>
-                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
+                <span class="px-2 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.actionCategory">Scientific Paper Category</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="competitions.actionCategory">Scientific Paper Category</p>
             </div>
           </li>
 
@@ -673,9 +813,9 @@
             <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-amber-500/20">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">National Scientific Paper Competition UNS</h4>
-                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
+                <span class="px-2 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.unsPaperCategory">Faculty of Information Technology and Data Science - Universitas Sebelas Maret</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="competitions.unsPaperCategory">Faculty of Information Technology and Data Science - Universitas Sebelas Maret</p>
             </div>
           </li>
 
@@ -689,9 +829,9 @@
             <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-amber-500/20">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">11th Airlangga Ideas Competition</h4>
-                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2023</span>
+                <span class="px-2 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2023</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.airlanggaCategory">Universitas Airlangga - Ideas Competition Category</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="competitions.airlanggaCategory">Universitas Airlangga - Ideas Competition Category</p>
             </div>
           </li>
 
@@ -711,9 +851,9 @@
             <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-slate-500/20">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Lomba Karya Tulis Ilmiah Nasional UNYSEF #14</h4>
-                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
+                <span class="px-2 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.unysef14Category">Universitas Negeri Yogyakarta - National Level Scientific Paper</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="competitions.unysef14Category">Universitas Negeri Yogyakarta - National Level Scientific Paper</p>
             </div>
           </li>
 
@@ -727,9 +867,9 @@
             <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-slate-500/20">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">National Competition & Innovation of IT (UNITY #13)</h4>
-                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
+                <span class="px-2 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2025</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.unityCategory">Scientific Paper Category</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="competitions.unityCategory">Scientific Paper Category</p>
             </div>
           </li>
 
@@ -743,9 +883,9 @@
             <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-slate-500/20">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Medical Science Festival Competition 2024</h4>
-                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
+                <span class="px-2 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.medsciCategory">Lomba Karya Tulis Ilmiah Nasional</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="competitions.medsciCategory">Lomba Karya Tulis Ilmiah Nasional</p>
             </div>
           </li>
 
@@ -759,9 +899,9 @@
             <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-slate-500/20">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Lomba Karya Tulis Ilmiah Electrolympic UPN</h4>
-                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
+                <span class="px-2 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2024</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.upnCategory">UPN Veteran Jakarta - National Scientific Paper</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="competitions.upnCategory">UPN Veteran Jakarta - National Scientific Paper</p>
             </div>
           </li>
 
@@ -775,282 +915,284 @@
             <div class="p-5 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm transition-all duration-200 hover:bg-white/90 dark:hover:bg-gray-800/95 hover:border-slate-500/20">
               <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                 <h4 class="text-base font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Lomba Karya Tulis Ilmiah Nasional UNYSEF #12</h4>
-                <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2023</span>
+                <span class="px-2 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">2023</span>
               </div>
-              <p class="text-xs text-gray-600 dark:text-gray-300" data-translate="competitions.unysef12Category">Universitas Negeri Yogyakarta - National Level Scientific Paper</p>
+              <p class="text-sm text-gray-600 dark:text-gray-300" data-translate="competitions.unysef12Category">Universitas Negeri Yogyakarta - National Level Scientific Paper</p>
             </div>
           </li>
         </ul>
       </div>
     </section>
 
-    <section id="skills" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="skills.subtitle">Browse My Recent</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in" data-translate="skills.title">Skills</h1>
+    <section id="skills" class="snap-section py-16 px-8 lg:px-32 scroll-mt-20">
+      <p class="section-eyebrow fade-in" data-translate="skills.subtitle">Browse My Recent</p>
+      <h2 class="section-title fade-in" data-translate="skills.title">Skills</h2>
 
       <!-- AI Development Skills -->
-      <div class="flex justify-center mt-12">
-        <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
-          <h2 class="text-2xl font-semibold text-center mb-6" data-translate="skills.aiDev">AI Development</h2>
-          <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 items-center">
-            <div class="flex flex-col items-center group">
+      <div class="mt-12 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="flex">
+        <div class="w-full p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
+          <h3 class="text-xl font-semibold text-center mb-6" data-translate="skills.aiDev">AI Development</h3>
+          <div class="flex flex-wrap justify-center gap-x-3 gap-y-5">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=python" alt="Python" title="Python" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=python" alt="Python" title="Python" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Python</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Python</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=tensorflow" alt="TensorFlow" title="TensorFlow" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=tensorflow" alt="TensorFlow" title="TensorFlow" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">TensorFlow</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">TensorFlow</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=pytorch" alt="PyTorch" title="PyTorch" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=pytorch" alt="PyTorch" title="PyTorch" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">PyTorch</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">PyTorch</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skills.syvixor.com/api/icons?i=keras" alt="Keras" title="Keras" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skills.syvixor.com/api/icons?i=keras" alt="Keras" title="Keras" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Keras</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Keras</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skills.syvixor.com/api/icons?i=pandas" alt="Pandas" title="Pandas" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skills.syvixor.com/api/icons?i=pandas" alt="Pandas" title="Pandas" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Pandas</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Pandas</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skills.syvixor.com/api/icons?i=numpy" alt="NumPy" title="NumPy" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skills.syvixor.com/api/icons?i=numpy" alt="NumPy" title="NumPy" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">NumPy</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">NumPy</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skills.syvixor.com/api/icons?i=scikitlearn" alt="Scikit-Learn" title="Scikit-Learn" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skills.syvixor.com/api/icons?i=scikitlearn" alt="Scikit-Learn" title="Scikit-Learn" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Scikit-Learn</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Scikit-Learn</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skills.syvixor.com/api/icons?i=langchain" alt="LangChain" title="LangChain" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skills.syvixor.com/api/icons?i=langchain" alt="LangChain" title="LangChain" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">LangChain</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">LangChain</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skills.syvixor.com/api/icons?i=kaggle" alt="Kaggle" title="Kaggle" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skills.syvixor.com/api/icons?i=kaggle" alt="Kaggle" title="Kaggle" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Kaggle</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Kaggle</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skills.syvixor.com/api/icons?i=googlecolaboratory" alt="Google Colaboratory" title="Google Colaboratory" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skills.syvixor.com/api/icons?i=googlecolaboratory" alt="Google Colaboratory" title="Google Colaboratory" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Google Colab</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Google Colab</span>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Web Development Skills -->
-      <div class="flex justify-center mt-8">
-        <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
-          <h2 class="text-2xl font-semibold text-center mb-6" data-translate="skills.webDev">Web Development</h2>
-          <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 items-center">
-            <div class="flex flex-col items-center group">
+      <div class="flex">
+        <div class="w-full p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
+          <h3 class="text-xl font-semibold text-center mb-6" data-translate="skills.webDev">Web Development</h3>
+          <div class="flex flex-wrap justify-center gap-x-3 gap-y-5">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=javascript" alt="JavaScript" title="JavaScript" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=javascript" alt="JavaScript" title="JavaScript" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">JavaScript</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">JavaScript</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=php" alt="PHP" title="PHP" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=php" alt="PHP" title="PHP" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">PHP</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">PHP</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=go" alt="Go" title="Go" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=go" alt="Go" title="Go" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Go</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Go</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=mysql" alt="MySQL" title="MySQL" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=mysql" alt="MySQL" title="MySQL" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">MySQL</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">MySQL</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=laravel" alt="Laravel" title="Laravel" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=laravel" alt="Laravel" title="Laravel" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Laravel</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Laravel</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skills.syvixor.com/api/icons?i=gin" alt="Gin" title="Gin" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skills.syvixor.com/api/icons?i=gin" alt="Gin" title="Gin" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Gin</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Gin</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=vue" alt="Vue.js" title="Vue.js" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=vue" alt="Vue.js" title="Vue.js" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Vue.js</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Vue.js</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=next" alt="Next.js" title="Next.js" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=next" alt="Next.js" title="Next.js" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Next.js</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Next.js</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind CSS" title="Tailwind CSS" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind CSS" title="Tailwind CSS" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Tailwind CSS</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Tailwind CSS</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=bootstrap" alt="Bootstrap" title="Bootstrap" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=bootstrap" alt="Bootstrap" title="Bootstrap" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Bootstrap</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Bootstrap</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=figma" alt="Figma" title="Figma" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=figma" alt="Figma" title="Figma" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Figma</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Figma</span>
             </div>
           </div>
         </div>
       </div>
 
       <!-- DevOps Skills -->
-      <div class="flex justify-center mt-8">
-        <div class="w-full lg:w-3/4 p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
-          <h2 class="text-2xl font-semibold text-center mb-6" data-translate="skills.devops">DevOps</h2>
-          <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 items-center">
-            <div class="flex flex-col items-center group">
+      <div class="flex">
+        <div class="w-full p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-3xl shadow-md fade-in">
+          <h3 class="text-xl font-semibold text-center mb-6" data-translate="skills.devops">DevOps</h3>
+          <div class="flex flex-wrap justify-center gap-x-3 gap-y-5">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=docker" alt="Docker" title="Docker" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=docker" alt="Docker" title="Docker" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Docker</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Docker</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=kubernetes" alt="Kubernetes" title="Kubernetes" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=kubernetes" alt="Kubernetes" title="Kubernetes" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Kubernetes</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Kubernetes</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=git" alt="Git" title="Git" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=git" alt="Git" title="Git" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Git</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Git</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=cloudflare" alt="Cloudflare" title="Cloudflare" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=cloudflare" alt="Cloudflare" title="Cloudflare" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">Cloudflare</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">Cloudflare</span>
             </div>
 
-            <div class="flex flex-col items-center group">
+            <div class="flex flex-col items-center group w-[4.25rem]">
               <div
                 class="w-14 h-14 md:w-16 md:h-16 p-2 bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center shadow-sm transition-transform duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:rotate-6"
               >
-                <img src="https://skillicons.dev/icons?i=gcp" alt="GCP" title="GCP" class="w-full h-full object-contain" />
+                <img loading="lazy" src="https://skillicons.dev/icons?i=gcp" alt="GCP" title="GCP" class="w-full h-full object-contain" />
               </div>
-              <span class="mt-2 text-xs sm:text-sm text-gray-700 dark:text-gray-300">GCP</span>
+              <span class="mt-2 text-xs text-center text-gray-700 dark:text-gray-300">GCP</span>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </section>
 
-    <section id="projects" class="snap-section py-16 px-8 lg:pl-32">
-      <p class="text-center text-gray-600 dark:text-gray-400 fade-in" data-translate="projects.subtitle">Browse My Recent</p>
-      <h1 class="text-center text-4xl md:text-5xl font-bold fade-in" data-translate="projects.title">Projects</h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+    <section id="projects" class="snap-section py-16 px-8 lg:px-32 scroll-mt-20">
+      <p class="section-eyebrow fade-in" data-translate="projects.subtitle">Browse My Recent</p>
+      <h2 class="section-title fade-in" data-translate="projects.title">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-12 max-w-6xl mx-auto">
         <!-- Project 1 -->
         <div
           class="p-6 bg-white/60 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 rounded-3xl shadow-md flex flex-col h-full hover:shadow-xl hover:border-indigo-500/20 dark:hover:border-indigo-400/20 hover:-translate-y-1.5 transition-all duration-300 group fade-in"
@@ -1062,27 +1204,22 @@
             <i class="bi bi-robot text-5xl text-indigo-600 dark:text-indigo-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"></i>
           </div>
           <div class="flex flex-wrap gap-1.5 mb-3">
-            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">LLM Agents</span>
-            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">RAG</span>
-            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">Whisper</span>
+            <span class="px-2.5 py-0.5 text-[11px] font-bold tracking-wide uppercase bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">LLM Agents</span>
+            <span class="px-2.5 py-0.5 text-[11px] font-bold tracking-wide uppercase bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">RAG</span>
+            <span class="px-2.5 py-0.5 text-[11px] font-bold tracking-wide uppercase bg-indigo-50/80 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">Whisper</span>
           </div>
-          <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">QudoAgent Orchestrator</h2>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">QudoAgent Orchestrator</h3>
           <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed" data-translate="projects.qudoDesc">
             Multi-agent architecture using LLMs for task scheduling, vector RAG integration, Whisper speech transcription, and local inference management via Ollama.
           </p>
           <div class="flex gap-3 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
-            <button
-              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5"
-              onclick="window.open('https://github.com/anangfathh')"
-            >
+            <a href="https://github.com/anangfathh" target="_blank" rel="noopener noreferrer" class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5">
               <i class="bi bi-github"></i>GitHub
-            </button>
-            <button
-              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-1.5"
-              onclick="window.open('#')"
-            >
+            </a>
+            <!-- TODO: replace with <a href="DEMO_URL"> once a live demo exists -->
+            <span aria-disabled="true" title="Demo not available yet" class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 opacity-50 cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-1.5">
               <i class="bi bi-box-arrow-up-right"></i><span data-translate="projects.liveDemo">Live Demo</span>
-            </button>
+            </span>
           </div>
         </div>
         <!-- Project 2 -->
@@ -1096,25 +1233,20 @@
             <i class="bi bi-pie-chart-fill text-5xl text-blue-600 dark:text-blue-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"></i>
           </div>
           <div class="flex flex-wrap gap-1.5 mb-3">
-            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Laravel</span>
-            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-indigo-300 rounded border border-indigo-100/30 dark:border-indigo-900/20">Vue.js</span>
-            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Pandas</span>
+            <span class="px-2.5 py-0.5 text-[11px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Laravel</span>
+            <span class="px-2.5 py-0.5 text-[11px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Vue.js</span>
+            <span class="px-2.5 py-0.5 text-[11px] font-bold tracking-wide uppercase bg-blue-50/80 text-blue-600 dark:bg-blue-950/40 dark:text-blue-300 rounded border border-blue-100/30 dark:border-blue-900/20">Pandas</span>
           </div>
-          <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Fintech Stakeholder Analytics</h2>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Fintech Stakeholder Analytics</h3>
           <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed" data-translate="projects.fintechDesc">Analytical dashboard built for UNS Fintech Center to process stakeholder survey data using KANO, SSI, and IPA satisfaction formulas.</p>
           <div class="flex gap-3 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
-            <button
-              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5"
-              onclick="window.open('https://github.com/anangfathh')"
-            >
+            <a href="https://github.com/anangfathh" target="_blank" rel="noopener noreferrer" class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5">
               <i class="bi bi-github"></i>GitHub
-            </button>
-            <button
-              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-1.5"
-              onclick="window.open('#')"
-            >
+            </a>
+            <!-- TODO: replace with <a href="DEMO_URL"> once a live demo exists -->
+            <span aria-disabled="true" title="Demo not available yet" class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 opacity-50 cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-1.5">
               <i class="bi bi-box-arrow-up-right"></i><span data-translate="projects.liveDemo">Live Demo</span>
-            </button>
+            </span>
           </div>
         </div>
         <!-- Project 3 -->
@@ -1128,71 +1260,56 @@
             <i class="bi bi-cpu text-5xl text-emerald-600 dark:text-emerald-400 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"></i>
           </div>
           <div class="flex flex-wrap gap-1.5 mb-3">
-            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-emerald-50/80 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 rounded border border-emerald-100/30 dark:border-emerald-900/20"
+            <span class="px-2.5 py-0.5 text-[11px] font-bold tracking-wide uppercase bg-emerald-50/80 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 rounded border border-emerald-100/30 dark:border-emerald-900/20"
               >Scikit-Learn</span
             >
-            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-emerald-50/80 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 rounded border border-emerald-100/30 dark:border-emerald-900/20"
+            <span class="px-2.5 py-0.5 text-[11px] font-bold tracking-wide uppercase bg-emerald-50/80 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 rounded border border-emerald-100/30 dark:border-emerald-900/20"
               >Genetic Alg</span
             >
-            <span class="px-2.5 py-0.5 text-[9px] font-bold tracking-wide uppercase bg-emerald-50/80 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 rounded border border-emerald-100/30 dark:border-emerald-900/20"
+            <span class="px-2.5 py-0.5 text-[11px] font-bold tracking-wide uppercase bg-emerald-50/80 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-300 rounded border border-emerald-100/30 dark:border-emerald-900/20"
               >Python</span
             >
           </div>
-          <h2 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Hajj Cost Predictor Engine</h2>
+          <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Hajj Cost Predictor Engine</h3>
           <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow leading-relaxed" data-translate="projects.hajjDesc">
             Machine learning regression models optimized with Genetic Algorithms to forecast Hajj expenditures based on inflation and administrative indices.
           </p>
           <div class="flex gap-3 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50">
-            <button
-              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5"
-              onclick="window.open('https://github.com/anangfathh')"
-            >
+            <a href="https://github.com/anangfathh" target="_blank" rel="noopener noreferrer" class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5">
               <i class="bi bi-github"></i>GitHub
-            </button>
-            <button
-              class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-1.5"
-              onclick="window.open('#')"
-            >
+            </a>
+            <!-- TODO: replace with <a href="DEMO_URL"> once a live demo exists -->
+            <span aria-disabled="true" title="Demo not available yet" class="flex-1 font-semibold py-2 px-4 text-xs rounded-xl bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 opacity-50 cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-1.5">
               <i class="bi bi-box-arrow-up-right"></i><span data-translate="projects.liveDemo">Live Demo</span>
-            </button>
+            </span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="resume" class="py-16 px-8 lg:pl-32 flex justify-center items-center">
+    <section id="resume" class="py-16 px-8 lg:px-32 scroll-mt-20 flex justify-center items-center">
       <div
         class="w-full max-w-4xl p-8 md:p-12 bg-gradient-to-br from-slate-900 to-indigo-950 dark:from-slate-950 dark:to-slate-900/90 rounded-[2.5rem] shadow-xl text-center relative overflow-hidden border border-indigo-500/10 dark:border-indigo-500/20 fade-in"
       >
         <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.06] bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:24px_24px]"></div>
         <div class="relative z-10">
-          <p class="text-indigo-500 dark:text-indigo-400 font-bold uppercase tracking-widest text-xs mb-2" data-translate="resume.cv">Curriculum Vitae</p>
+          <p class="text-indigo-300 font-bold uppercase tracking-widest text-xs mb-2" data-translate="resume.cv">Curriculum Vitae</p>
           <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4" data-translate="resume.title">Professional Resume</h2>
           <p class="text-slate-300 dark:text-slate-400 mb-8 max-w-md mx-auto text-sm leading-relaxed" data-translate="resume.desc">Interested in reviewing my detailed academic background, skillsets, and professional experiences? Access the full PDF below.</p>
-          <button
-            class="font-semibold py-3.5 px-8 rounded-full bg-white text-gray-900 hover:bg-slate-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-indigo-500/15"
-            onclick="window.open('./assets/CV_Muhammad Anang Fathur Rohman.pdf')"
-          >
+          <a href="./assets/CV_Muhammad%20Anang%20Fathur%20Rohman.pdf" download class="inline-block font-semibold py-3.5 px-8 rounded-full bg-white text-gray-900 hover:bg-slate-100 hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-indigo-500/15">
             <i class="bi bi-file-earmark-arrow-down-fill mr-2"></i><span data-translate="resume.btnText">Download Resume PDF</span>
-          </button>
+          </a>
         </div>
       </div>
     </section>
 
-    <footer class="py-8 border-t border-gray-200 dark:border-gray-700">
-      <div class="container mx-auto px-8">
-        <nav class="flex justify-center mb-4">
-          <ul class="flex flex-wrap justify-center gap-8 list-none text-lg">
-            <li><a href="#about" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.about">About</a></li>
-            <li><a href="#education" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.education">Education</a></li>
-            <li><a href="#experiences" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.experiences">Experiences</a></li>
-            <li><a href="#competitions" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.competitions">Competitions</a></li>
-            <li><a href="#skills" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.skills">Skills</a></li>
-            <li><a href="#projects" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.projects">Projects</a></li>
-            <li><a href="#resume" class="hover:text-gray-500 dark:hover:text-gray-400 nav-underline" data-translate="nav.resume">Resume</a></li>
-          </ul>
-        </nav>
-        <p class="text-center text-sm text-gray-500 dark:text-gray-400" data-translate="footer.copyright">&copy; 2025 Muhammad Anang Fathur Rohman. All Rights Reserved.</p>
+    <footer class="py-10 border-t border-gray-200 dark:border-gray-800">
+      <div class="max-w-6xl mx-auto px-8 flex flex-col items-center gap-4">
+        <div class="flex gap-5 text-2xl">
+          <a href="https://www.linkedin.com/in/muhammad-anang-fathur-rohman-7671ba1b0/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-indigo-600 dark:hover:text-indigo-400"><i class="bi bi-linkedin"></i></a>
+          <a href="https://github.com/anangfathh" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-indigo-600 dark:hover:text-indigo-400"><i class="bi bi-github"></i></a>
+        </div>
+        <p class="text-center text-sm text-gray-600 dark:text-gray-400" data-translate="footer.copyright">&copy; 2026 Muhammad Anang Fathur Rohman. All Rights Reserved.</p>
       </div>
     </footer>
 
@@ -1203,9 +1320,19 @@
       function toggleMenu() {
         const menu = document.querySelector(".menu-links");
         const icon = document.querySelector(".hamburger-icon");
-        menu.classList.toggle("max-h-0");
-        menu.classList.toggle("max-h-96"); // A large enough value
-        icon.classList.toggle("open");
+        const opening = menu.classList.contains("max-h-0");
+        menu.classList.toggle("max-h-0", !opening);
+        menu.classList.toggle("max-h-96", opening); // A large enough value
+        icon.classList.toggle("open", opening);
+        icon.setAttribute("aria-expanded", String(opening));
+        icon.setAttribute("aria-label", opening ? "Close menu" : "Open menu");
+        clearTimeout(menu._hideTimer);
+        if (opening) {
+          menu.classList.remove("invisible");
+        } else {
+          // keep it visible until the collapse animation finishes
+          menu._hideTimer = setTimeout(() => menu.classList.add("invisible"), 300);
+        }
       }
 
       // Dark Mode Toggle
@@ -1294,6 +1421,8 @@
           },
           hero: {
             hello: "Hello, I'm",
+            tagline: "I build LLM agents, RAG pipelines, and data-driven web apps.",
+            viewProjects: "View Projects",
             downloadCv: "Download CV"
           },
           about: {
@@ -1338,7 +1467,7 @@
               bullet5: "Built Text-to-Speech (TTS) services using Coqui TTS, Edge TTS, Piper, and Chatterbox."
             },
             fintech: {
-              role: "SoftWare Developer",
+              role: "Software Developer",
               type: "Freelance",
               duration: "Nov 2024 - Nov 2025",
               bullet1: "Processed raw data from CSV files into structured SQL syntax using Pandas, enabling seamless data integration into databases.",
@@ -1405,7 +1534,7 @@
             btnText: "Download Resume PDF"
           },
           footer: {
-            copyright: "© 2025 Muhammad Anang Fathur Rohman. All Rights Reserved."
+            copyright: "© {year} Muhammad Anang Fathur Rohman. All Rights Reserved."
           }
         },
         id: {
@@ -1432,6 +1561,8 @@
           },
           hero: {
             hello: "Halo, saya",
+            tagline: "Saya membangun agen LLM, pipeline RAG, dan aplikasi web berbasis data.",
+            viewProjects: "Lihat Proyek",
             downloadCv: "Unduh CV"
           },
           about: {
@@ -1543,7 +1674,7 @@
             btnText: "Unduh PDF Resume"
           },
           footer: {
-            copyright: "© 2025 Muhammad Anang Fathur Rohman. Hak Cipta Dilindungi."
+            copyright: "© {year} Muhammad Anang Fathur Rohman. Hak Cipta Dilindungi."
           }
         }
       };
@@ -1599,7 +1730,7 @@
           const key = el.getAttribute("data-translate");
           const translatedText = getTranslation(translations[lang], key);
           if (translatedText) {
-            el.textContent = translatedText;
+            el.textContent = translatedText.replace("{year}", new Date().getFullYear());
           }
         });
 
@@ -1649,8 +1780,7 @@
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("visible");
-            } else {
-              entry.target.classList.remove("visible");
+              observer.unobserve(entry.target);
             }
           });
         }, observerOptions);
@@ -1719,6 +1849,12 @@
           window.addEventListener("resize", updateIndicator);
           setTimeout(updateIndicator, 200);
         }
+
+        // Top nav gets a hairline once the page is scrolled
+        const topNav = document.getElementById("top-nav");
+        const syncNav = () => topNav && topNav.classList.toggle("is-scrolled", window.scrollY > 8);
+        window.addEventListener("scroll", syncNav, { passive: true });
+        syncNav();
 
         // Sidebar scroll effect
         const sidebar = document.getElementById("desktop-sidebar");
